@@ -2,9 +2,14 @@ package com.yulu.mangger.dao;
 
 
 import com.yulu.mangger.bean.User;
+import com.yulu.mangger.dao.provider.UserDynaSqlProvider;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
+
+import java.util.List;
+import java.util.Map;
 
 import static com.yulu.util.common.HrmConstants.USERTABLE;
 
@@ -26,5 +31,21 @@ public interface UserDao {
 	// 根据id删除用户
 	@Delete(" delete from "+USERTABLE+" where id = #{id} ")
 	void deleteById(Integer id);
+
+	// 动态修改用户
+	@SelectProvider(type=UserDynaSqlProvider.class,method="updateUser")
+	void update(User user);
+
+	// 动态查询
+	@SelectProvider(type=UserDynaSqlProvider.class,method="selectWhitParam")
+	List<User> selectByPage(Map<String, Object> params);
+
+	// 根据参数查询用户总数
+	@SelectProvider(type=UserDynaSqlProvider.class,method="count")
+	Integer count(Map<String, Object> params);
+
+	// 动态插入用户
+	@SelectProvider(type=UserDynaSqlProvider.class,method="insertUser")
+	void save(User user);
 	
 }
