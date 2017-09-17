@@ -6,30 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d61a3550-ebaa-41f5-8f7c-89e57620b8a4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yulu/mangger/service/HrmService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yulu/mangger/service/impl/HrmServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/mangger/service/HrmService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/mangger/service/impl/HrmServiceImpl.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yulu/dd.class" afterPath="$PROJECT_DIR$/target/classes/com/yulu/dd.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yulu/mangger/bean/User.class" afterPath="$PROJECT_DIR$/target/classes/com/yulu/mangger/bean/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yulu/mangger/dao/UserDao.class" afterPath="$PROJECT_DIR$/target/classes/com/yulu/mangger/dao/UserDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yulu/mangger/interceptor/AuthorizedInterceptor.class" afterPath="$PROJECT_DIR$/target/classes/com/yulu/mangger/interceptor/AuthorizedInterceptor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yulu/util/common/HrmConstants.class" afterPath="$PROJECT_DIR$/target/classes/com/yulu/util/common/HrmConstants.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yulu/util/tag/PageModel.class" afterPath="$PROJECT_DIR$/target/classes/com/yulu/util/tag/PageModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yulu/util/tag/PagerTag.class" afterPath="$PROJECT_DIR$/target/classes/com/yulu/util/tag/PagerTag.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/yulu_demo1.war" afterPath="$PROJECT_DIR$/target/yulu_demo1.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/dd.class" afterPath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/dd.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/mangger/bean/User.class" afterPath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/mangger/bean/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/mangger/dao/UserDao.class" afterPath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/mangger/dao/UserDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/mangger/interceptor/AuthorizedInterceptor.class" afterPath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/mangger/interceptor/AuthorizedInterceptor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/util/common/HrmConstants.class" afterPath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/util/common/HrmConstants.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/util/tag/PageModel.class" afterPath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/util/tag/PageModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/util/tag/PagerTag.class" afterPath="$PROJECT_DIR$/target/yulu_demo1/WEB-INF/classes/com/yulu/util/tag/PagerTag.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yulu/mangger/mapper/deptMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/yulu/mangger/mapper/deptMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/yulu_demo1/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/target/yulu_demo1/META-INF/MANIFEST.MF" />
-    </list>
+    <list default="true" id="d61a3550-ebaa-41f5-8f7c-89e57620b8a4" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -896,7 +873,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
