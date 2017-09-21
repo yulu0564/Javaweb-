@@ -111,6 +111,27 @@ public class NewsController {
 		return modelAndView;
 	}
 
+	@RequestMapping("/news_details")
+	public ModelAndView news_details(HttpServletRequest request, Integer detail)
+			throws Exception {
+		// 创建返回的对象modeAndView
+		ModelAndView modelAndView = new ModelAndView();
+		// 将参数传入Service层进行处理
+		News newsinf = newsService.findNewsById(detail);
+		List<Sort> sortlist = sortService.findSortList(null);
+		Comments comments = new Comments();
+		comments.setNewsid(detail);
+		List<Comments> commentslist = commentsService
+				.findCommentsList(comments);
+
+		modelAndView.addObject("commentslist", commentslist);
+		modelAndView.addObject("sortlist", sortlist);
+		modelAndView.addObject("newsinf", newsinf);
+		// 返回到jsp显示
+		modelAndView.setViewName("news/news_details");
+		return modelAndView;
+	}
+
 	// 添加新闻
 	@RequestMapping("/add_comments")
 	public String add_comments(HttpServletRequest request, Integer newsid,

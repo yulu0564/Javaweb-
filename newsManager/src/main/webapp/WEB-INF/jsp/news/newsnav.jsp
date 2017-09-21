@@ -1,8 +1,21 @@
 <%@page pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:if test="${username==null}">
+	<div id="myAlert" class="alert alert-warning ">
+		<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>您好！</strong>您还没有登录!
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			$(".close").click(function() {
+				$("#myAlert").alert('close');
+			});
+		});
+	</script>
+</c:if>
+
 <div class="row">
 	<div class="col-md-12">
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<nav class="navbar navbar-default" role="navigation">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#bs-example-navbar-collapse-1">
@@ -10,26 +23,19 @@
 						class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">个人中心</a>
+				<a class="navbar-brand" href="#">新闻</a>
 			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a
+					<li <c:if test="${param.type==null}">class="active" </c:if>><a
 						href="${pageContext.request.contextPath}/news/news_index">首页</a></li>
-					<li
-						class="<%="inf".equals(request.getParameter("fun")) ? "active" : ""%>"><a
-						href="${pageContext.request.contextPath}/news/user_inf">个人中心</a></li>
-					<li
-						class="<%="collect".equals(request.getParameter("fun"))
-					? "active"
-					: ""%>"><a
-						href="${pageContext.request.contextPath}/news/user_collect?userid=${userid}">我的收藏</a></li>
-					<li
-						class="<%="comment".equals(request.getParameter("fun"))
-					? "active"
-					: ""%>"><a
-						href="${pageContext.request.contextPath}/news/user_comment?userid=${userid}">我的评论</a></li>
+					<c:if test="${sortlist ne null}">
+						<c:forEach items="${sortlist}" var="sort" varStatus="vs">
+							<li <c:if test="${sort.id==param.type}">class="active" </c:if>><a
+								href="${pageContext.request.contextPath}/news/news_list?type=${sort.id}">${sort.sortname}</a></li>
+						</c:forEach>
+					</c:if>
 				</ul>
 				<c:if test="${username==null}">
 					<ul class="nav navbar-nav navbar-right">
@@ -45,7 +51,7 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">${username}<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
-								<li><a
+								<li <c:if test="${param.type==null}">class="active" </c:if>><a
 									href="${pageContext.request.contextPath}/news/news_index">首页</a></li>
 								<li
 									class="<%="inf".equals(request.getParameter("fun"))
@@ -72,6 +78,45 @@
 			</div>
 
 		</nav>
+	</div>
+
+	<div class="modal fade" id="modal-container-181250" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">登录</h4>
+				</div>
+				<form role="form" method="post" action="userLogin">
+					<div class="modal-body">
+						<div style="width: 400px; margin-left: 90px">
+							<div class="input-group">
+								<span class="input-group-addon">昵称</span> <input type="text"
+									name="username" class="form-control" placeholder="请输入用户名"
+									data-toggle="tooltip" data-placement="right" title="请输入用户名">
+							</div>
+						</div>
+						<div style="width: 400px; margin-left: 90px">
+							<div class="input-group" style="margin-top: 20px">
+								<span class="input-group-addon">密码</span> <input type="password"
+									name="password" class="form-control" placeholder="请输入密码"
+									data-toggle="tooltip" data-placement="right" title="请输入密码">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success"
+							style="width: 400px; margin-right: 80px">
+							<B> 登录 </B>
+						</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							style="width: 400px; margin-right: 80px; margin-top: 20px;">取消</button>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 
 	<div class="modal fade" id="modal-container-181251" role="dialog"

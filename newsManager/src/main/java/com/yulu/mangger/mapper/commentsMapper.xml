@@ -242,7 +242,7 @@
 	</update>
 	<select id="findCommentsList" parameterType="com.yulu.mangger.bean.Comments"
 		resultType="com.yulu.mangger.bean.CommentsCustom">
-		select news.title,news.sort,user.username,comments.* from comments join user on comments.userid=user.id join news on comments.newsid=news.id where comments.isdelete=0
+		select news.title,news.sort,user_inf.username,comments.* from comments join user_inf on comments.userid=user_inf.id join news on comments.newsid=news.id where comments.isdelete=0
 		<if test="contects!=null">
 		 and contects like '%${contects}%'
 		</if>
