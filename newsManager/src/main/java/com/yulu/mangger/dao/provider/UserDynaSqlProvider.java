@@ -76,6 +76,15 @@ public class UserDynaSqlProvider {
 				if(user.getPassword() != null && !user.getPassword().equals("")){
 					VALUES("password", "#{password}");
 				}
+				if(user.getPassword() != null && !user.getPassword().equals("")){
+					VALUES("password", "#{password}");
+				}
+				if(user.getPassword() != null && !user.getPassword().equals("")){
+					VALUES("password", "#{password}");
+				}
+				if(user.getPassword() != null && !user.getPassword().equals("")){
+					VALUES("password", "#{password}");
+				}
 			}
 		}.toString();
 	}

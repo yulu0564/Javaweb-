@@ -13,6 +13,9 @@ public class User implements Serializable {
     private Date createDate;    // 建档日期
     private String nickname;    // 昵称
     private String head_image;    // 头像
+    private String email;
+    private Integer isdelete;
+    private Integer sex;
     // 无参数构造器
     public User() {
         super();
@@ -89,5 +92,29 @@ public class User implements Serializable {
 
     public void setHead_image(String head_image) {
         this.head_image = head_image;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getIsdelete() {
+        return isdelete;
+    }
+
+    public void setIsdelete(Integer isdelete) {
+        this.isdelete = isdelete;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 }
