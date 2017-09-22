@@ -25,6 +25,10 @@
                             class="<%="sortlist".equals(request.getParameter("fun")) ? "active"
 					: ""%>"><a
                             href="${pageContext.request.contextPath}/admin/sort/sortlist">新闻分类管理</a></li>
+                    <li
+                            class="<%="sortlist".equals(request.getParameter("fun")) ? "active"
+					: ""%>"><a
+                            href="${pageContext.request.contextPath}/admin/user/userlist">用户管理管理</a></li>
                 </ul>
             </div>
 

@@ -13,9 +13,12 @@ public class User implements Serializable {
     private Date createDate;    // 建档日期
     private String nickname;    // 昵称
     private String head_image;    // 头像
+    private Integer sex;
+    private Integer telephone;
+
+    private Integer ident;
     private String email;
     private Integer isdelete;
-    private Integer sex;
     // 无参数构造器
     public User() {
         super();
@@ -116,5 +119,21 @@ public class User implements Serializable {
 
     public void setSex(Integer sex) {
         this.sex = sex;
+    }
+
+    public Integer getIdent() {
+        return ident;
+    }
+
+    public void setIdent(Integer ident) {
+        this.ident = ident;
+    }
+
+    public Integer getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(Integer telephone) {
+        this.telephone = telephone;
     }
 }

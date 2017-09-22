@@ -10,45 +10,20 @@ import java.util.List;
  */
 public interface UserService {
 
+    public List<User> findUserList(User user) throws Exception;
 
-    /**
-     * 用户登录
-     *
-     * @param loginname
-     * @param password
-     * @return User对象
-     */
-    User login(String loginname, String password);
+    public User findUserById(Integer id) throws Exception;
 
-    /**
-     * 根据id查询用户
-     *
-     * @param id
-     * @return 用户对象
-     */
-    User findUserById(Integer id);
+    public void edit_do(User user) throws Exception;
 
-    /**
-     * 获得所有用户
-     *
-     * @return User对象的List集合
-     */
-    List<User> findUser(User user, PageModel pageModel);
+    public void delete_do(Integer id) throws Exception;
 
-    /**
-     * 根据id删除用户
-     *
-     * @param id
-     */
-    void removeUserById(Integer id);
+    public void ban_do(Integer id) throws Exception;
 
-    /**
-     * 修改用户
-     */
-    void modifyUser(User user);
+    public void ok_do(Integer id) throws Exception;
 
-    /**
-     * 添加用户
-     */
-    void addUser(User user);
+    public void add_do(User user) throws Exception;
+
+    public User findLoginUser(String username, String password)
+            throws Exception;
 }

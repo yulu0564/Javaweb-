@@ -1,18 +1,15 @@
 package com.yulu.mangger.service.impl;
 
 import com.yulu.mangger.bean.User;
-import com.yulu.mangger.dao.UserDao;
+import com.yulu.mangger.dao.UserMapper;
 import com.yulu.mangger.service.UserService;
-import com.yulu.util.tag.PageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Description: 服务层接口实现类
@@ -21,84 +18,62 @@ import java.util.Map;
 @Service("userService")
 public class UserServiceImp implements UserService {
 
-    /**
-     * 自动注入持久层Dao对象
-     */
+    // 注入User
     @Autowired
-    private UserDao userDao;
+    private UserMapper usermapper;
 
-    /*****************用户服务接口实现*************************************/
-    /**
-     * HrmServiceImpl接口login方法实现
-     *
-     * @see { HrmService }
-     */
-    @Transactional(readOnly = true)
     @Override
-    public User login(String loginname, String password) {
-//		System.out.println("HrmServiceImpl login -- >>");
-        return userDao.selectByLoginnameAndPassword(loginname, password);
+    public List<User> findUserList(User user) throws Exception {
+        // TODO Auto-generated method stub
+        return usermapper.findUserList(user);
     }
 
-
-    /**
-     * HrmServiceImpl接口findUser方法实现
-     * @see { HrmService }
-     * */
-    @Transactional(readOnly=true)
     @Override
-    public List<User> findUser(User user, PageModel pageModel) {
-        /** 当前需要分页的总数据条数  */
-        Map<String,Object> params = new HashMap<>();
-        params.put("user", user);
-        int recordCount = userDao.count(params);
-        pageModel.setRecordCount(recordCount);
-        if(recordCount > 0){
-            /** 开始分页查询数据：查询第几页的数据 */
-            params.put("pageModel", pageModel);
-        }
-        List<User> users = userDao.selectByPage(params);
-
-        return users;
+    public User findUserById(Integer id) throws Exception {
+        // TODO Auto-generated method stub
+        return usermapper.selectByPrimaryKey(id);
     }
 
-    /**
-     * HrmServiceImpl接口findUserById方法实现
-     * @see { HrmService }
-     * */
-    @Transactional(readOnly=true)
     @Override
-    public User findUserById(Integer id) {
-        return userDao.selectById(id);
+    public void edit_do(User user) throws Exception {
+        // TODO Auto-generated method stub
+        usermapper.updateByPrimaryKeySelective(user);
     }
 
-    /**
-     * HrmServiceImpl接口removeUserById方法实现
-     * @see { HrmService }
-     * */
     @Override
-    public void removeUserById(Integer id) {
-        userDao.deleteById(id);
-
+    public void delete_do(Integer id) throws Exception {
+        // TODO Auto-generated method stub
+        usermapper.deleteByPrimaryKey(id);
     }
 
-    /**
-     * HrmServiceImpl接口addUser方法实现
-     * @see { HrmService }
-     * */
     @Override
-    public void modifyUser(User user) {
-        userDao.update(user);
-
+    public void add_do(User user) throws Exception {
+        // TODO Auto-generated method stub
+        usermapper.insertSelective(user);
     }
 
-    /**
-     * HrmServiceImpl接口modifyUser方法实现
-     * @see { HrmService }
-     * */
     @Override
-    public void addUser(User user) {
-        userDao.save(user);
+    public User findLoginUser(String username, String password)
+            throws Exception {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        return usermapper.findLoginUser(user);
+    }
 
+    @Override
+    public void ban_do(Integer id) throws Exception {
+        User user = new User();
+        user.setId(id);
+        user.setIsdelete(1);
+        usermapper.banById(user);
+    }
+
+    @Override
+    public void ok_do(Integer id) throws Exception {
+        User user = new User();
+        user.setId(id);
+        user.setIsdelete(0);
+        usermapper.okById(user);
     }
 }
