@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2017-09-21 17:40:06
+Date: 2017-09-22 17:33:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -144,11 +144,13 @@ CREATE TABLE `user_inf` (
   `head_image` varchar(50) DEFAULT NULL,
   `isdelete` int(1) NOT NULL,
   `email` varchar(25) DEFAULT NULL,
+  `telephone` int(11) DEFAULT NULL,
   `sex` int(1) DEFAULT NULL,
+  `ident` int(1) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_inf
 -- ----------------------------
-INSERT INTO `user_inf` VALUES ('1', 'admin', '123456', '2', '2016-03-12 09:34:28', '超级管理员', null, null, '0', null, null);
+INSERT INTO `user_inf` VALUES ('1', 'admin', '123456', '2', '2016-03-12 09:34:28', '超级管理员', null, null, '0', null, null, null, '0');
