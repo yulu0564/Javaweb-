@@ -34,7 +34,7 @@
                     <form  id="myform" >
                         </c:if>
                         <c:if test="${newsinf.id!=null }">
-                        <form method="post" action="edit_do.action">
+                        <form method="post" action="edit_do">
                             </c:if>
                             <input name="id" type="hidden" value="${newsinf.id}">
                             <div style="width: 660px; margin-left: 100px">

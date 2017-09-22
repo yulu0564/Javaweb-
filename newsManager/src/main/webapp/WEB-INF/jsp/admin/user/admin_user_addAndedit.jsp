@@ -23,15 +23,15 @@
                 </div>
                 <div class="panel-body">
                     <c:if test="${userinf.id==null }">
-                    <form method="post" action="add_do">
+                    <form method="post" action="${pageContext.request.contextPath}/admin/user/add_do">
                         </c:if>
                         <c:if test="${userinf.id!=null }">
-                        <form method="post" action="edit_do">
+                        <form method="post" action="${pageContext.request.contextPath}/admin/user/edit_do">
                             </c:if>
                             <input name="id" type="hidden" value="${userinf.id}">
                             <div style="width: 400px; margin-left: 230px">
                                 <div class="input-group">
-                                    <span class="input-group-addon">昵称</span> <input type="text"
+                                    <span class="input-group-addon">用户名</span> <input type="text"
                                                                                      name="username"
                                                                                      value="${userinf.username}"
                                                                                      class="form-control"

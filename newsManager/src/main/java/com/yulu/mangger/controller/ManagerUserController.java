@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -46,20 +47,22 @@ public class ManagerUserController {
 
 	// 添加用户
 	@RequestMapping("/add_do")
+//	@RequestMapping(value="/add_do",method= RequestMethod.POST )
 	public String add_do(HttpServletRequest request, String username,
-						 String password, Integer sex, String email, Integer telephone, Date createDate, String nickname, String head_image)
+						 String password, Integer sex, String email, String telephone, String nickname, String head_image)
 			throws Exception {
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setSex(sex);
 		user.setEmail(email);
-		user.setTelephone(telephone);
+		user.setTelephone(Integer.parseInt(telephone));
 		user.setIdent(0);
 		user.setIsdelete(0);
 
+
 		user.setStatus(0);
-		user.setCreateDate(createDate);
+		user.setCreateDate(new Date());
 		user.setNickname(nickname);
 		user.setHead_image(head_image);
 		userService.add_do(user);
