@@ -73,14 +73,6 @@
                                                                                      placeholder="请输入邮箱">
                                 </div>
                             </div>
-                            <div style="width: 400px; margin-left: 230px">
-                                <div class="input-group" style="margin-top: 30px">
-                                    <span class="input-group-addon">日期</span> <input type="text"
-                                                                                     name="telephone"
-                                                                                     class="form-control"
-                                                                                     placeholder="请输入手机号">
-                                </div>
-                            </div>
 
                             <div style="width: 400px; margin-left: 230px">
                                 <div class="input-group" style="margin-top: 30px">

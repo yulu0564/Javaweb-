@@ -79,7 +79,7 @@ public class UserController {
 	@RequestMapping("/register")
 	public String register(HttpServletRequest request, HttpSession session,
 						   String username, String password, Integer sex, String email,
-						   Integer telephone, Integer status, Date createDate, String nickname, String head_image) throws Exception {
+						   Integer telephone, Integer status, String nickname, String head_image) throws Exception {
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
@@ -89,10 +89,9 @@ public class UserController {
 		user.setIdent(0);
 		user.setIsdelete(0);
 		user.setStatus(status);
-		user.setCreateDate(createDate);
+		user.setCreateDate(new Date());
 		user.setNickname(nickname);
 		user.setHead_image(head_image);
-
 		userService.add_do(user);
 		session.setAttribute("username", username);
 		session.setAttribute("password", password);
