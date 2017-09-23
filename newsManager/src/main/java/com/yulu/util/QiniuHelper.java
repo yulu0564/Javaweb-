@@ -1,4 +1,5 @@
 package com.yulu.util;
+
 import java.io.File;
 import java.util.UUID;
 
@@ -17,22 +18,23 @@ public class QiniuHelper {
     /**
      * 空间名
      */
-    private static String Scope = "xxxx";
+    private static String Scope = "yulu";
 
     /**
      * 域名
      */
-    private static String Url = "xxxxxxxxx.bkt.clouddn.com";
+    private static String Url = "owqb07jhj.bkt.clouddn.com";
 
     /**
      * 公钥
      */
-    private static String ACCESS_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    private static String ACCESS_KEY = "-cbaUNmUhK1x-048E8m6gCxEH39Az4hasDO-Ih-E";
 
-    private static String SECRET_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    private static String SECRET_KEY = "2vqQGBAdskH6dVMaywstyL6OTSHRMPkCJ2zqxTKR";
 
     /**
      * 上传附件
+     *
      * @throws QiniuException
      */
     public static String UploadFile(File file) throws QiniuException {
@@ -40,11 +42,9 @@ public class QiniuHelper {
         String key = UUID.randomUUID().toString().replaceAll("-", "");
 
         try {
-
             //构造一个带指定Zone对象的配置类
             Configuration cfg = new Configuration(Zone.zone0());
-
-            //创建上传对象
+            //...其他参数参考类注释
             UploadManager uploadManager = new UploadManager(cfg);
 
             //密钥配置
@@ -61,8 +61,7 @@ public class QiniuHelper {
     /**
      * 获得url地址
      */
-    public static String GetUrl(String key)
-    {
-        return String.format ("http://%s/%s", Url, key);
+    public static String GetUrl(String key) {
+        return String.format("http://%s/%s", Url, key);
     }
 }

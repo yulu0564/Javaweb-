@@ -8,30 +8,6 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <meta content="" name="description" />
 <meta content="" name="author" />
-<link href="${ctx}/js/metronic/plugins/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
-<link
-	href="${ctx}/js/metronic/plugins/bootstrap/css/bootstrap-responsive.min.css"
-	rel="stylesheet" type="text/css" />
-<link
-	href="${ctx}/js/metronic/plugins/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css" />
-<link href="${ctx}/js/metronic/css/style-metro.css" rel="stylesheet"
-	type="text/css" />
-<link href="${ctx}/js/metronic/css/style.css" rel="stylesheet"
-	type="text/css" />
-<link href="${ctx}/js/metronic/css/style-responsive.css" rel="stylesheet"
-	type="text/css" />
-<link href="${ctx}/js/metronic/css/themes/default.css" rel="stylesheet"
-	type="text/css" id="style_color" />
-<link href="${ctx}/js/metronic/plugins/uniform/css/uniform.default.css"
-	rel="stylesheet" type="text/css" />
-<!-- END GLOBAL MANDATORY STYLES -->
-<!-- BEGIN PAGE LEVEL STYLES -->
-<link href="${ctx}/js/metronic/css/pages/lock.css" rel="stylesheet"
-	type="text/css" />
-<!-- END PAGE LEVEL STYLES -->
-<link rel="shortcut icon" href="favicon.ico" />
 <script type="text/javascript" src="${ctx }/js/jquery-1.11.0.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery-migrate-1.2.1.js"></script>
 <link href="${ctx }/js/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css" />
@@ -77,7 +53,8 @@
 
 </script>
 </head>
-<!-- END HEAD -->
+<!-- END HEAD -->News
+Sort
 <!-- BEGIN BODY -->
 <body style="font-family: 微软雅黑">
 	<div class="page-lock">

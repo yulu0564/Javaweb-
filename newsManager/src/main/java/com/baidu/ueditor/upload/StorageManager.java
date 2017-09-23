@@ -70,11 +70,7 @@ public class StorageManager {
 				return new BaseState(false, AppInfo.MAX_SIZE);
 			}
 
-//			state = saveTmpFile(tmpFile, path);
-//
-//			if (!state.isSuccess()) {
-//				tmpFile.delete();
-//			}
+			//state = saveTmpFile(tmpFile, path);
 
 			//存储文件到七牛
 			String key= QiniuHelper.UploadFile(tmpFile);
@@ -84,9 +80,9 @@ public class StorageManager {
 			state.putInfo("title", tmpFile.getName());
 			state.putInfo("url", QiniuHelper.GetUrl(key));
 
-//if (!state.isSuccess()) {
+			//if (!state.isSuccess()) {
 			tmpFile.delete();
-//}
+			//}
 
 			return state;
 			
@@ -114,11 +110,17 @@ public class StorageManager {
 			bos.flush();
 			bos.close();
 
-			state = saveTmpFile(tmpFile, path);
+			//存储文件到七牛
+			String key= QiniuHelper.UploadFile(tmpFile);
 
-			if (!state.isSuccess()) {
-				tmpFile.delete();
-			}
+			state = new BaseState(true);
+			state.putInfo("size", tmpFile.length());
+			state.putInfo("title", tmpFile.getName());
+			state.putInfo("url", QiniuHelper.GetUrl(key));
+
+			//if (!state.isSuccess()) {
+			tmpFile.delete();
+			//}
 
 			return state;
 		} catch (IOException e) {
