@@ -23975,6 +23975,11 @@ UE.plugin.register('autosave', function (){
 
             'contentchange': function () {
 
+                //关闭自动本地保存
+                if (!me.getOpt('enableAutoSave')) {
+                    return;
+                }
+
                 if ( !saveKey ) {
                     return;
                 }
