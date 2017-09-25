@@ -77,7 +77,7 @@ public class ManagerNewsController {
 		news.setTime(nowtime);
 		news.setIsdelete(0);
 		newsService.add_do(news);
-		return "forward:newslist.action";
+		return "forward:newslist";
 	}
 
 //
@@ -99,7 +99,7 @@ public class ManagerNewsController {
 //		news.setTime(nowtime);
 //		news.setIsdelete(0);
 //		newsService.add_do(news);
-//		return "forward:newslist.action";
+//		return "forward:newslist";
 //	}
 
 	// 修改页面
@@ -135,7 +135,7 @@ public class ManagerNewsController {
 		news.setTime(nowtime);
 		news.setIsdelete(0);
 		newsService.edit_do(news);
-		return "forward:newslist.action";
+		return "forward:newslist";
 	}
 
 	// 删除
@@ -143,6 +143,6 @@ public class ManagerNewsController {
 	public String delete(HttpServletRequest request, Integer id)
 			throws Exception {
 		newsService.delete_do(id);
-		return "forward:newslist.action";
+		return "forward:newslist";
 	}
 }

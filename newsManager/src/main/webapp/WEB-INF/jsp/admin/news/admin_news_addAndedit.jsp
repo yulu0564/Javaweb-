@@ -31,12 +31,7 @@
                     <h3 class="panel-title">新闻信息</h3>
                 </div>
                 <div class="panel-body">
-                    <c:if test="${newsinf.id==null }">
                     <form  id="myform" >
-                        </c:if>
-                        <c:if test="${newsinf.id!=null }">
-                        <form method="post" action="edit_do">
-                            </c:if>
                             <input name="id" type="hidden" value="${newsinf.id}">
                             <div style="width: 660px; margin-left: 100px">
                                 <div class="input-group">
@@ -96,7 +91,7 @@
                         </form>
                          <button class="btn btn-success"
                                 style="width: 400px; margin-top: 30px; margin-left: 230px"
-                                onclick="addDo()">提交
+                                onclick="addDo(${newsinf.id})">提交
                                     </button>
                         <button class="btn btn-default"
                                 style="width: 400px; margin-top: 20px; margin-left: 230px"
@@ -106,6 +101,7 @@
             </div>
         </div>
         <div class="col-md-2"></div>
+                                    <div id="contect_hid" style="display:none;">${newsinf.contect}</div>
     </div>
 </div>
 <script type="text/javascript">
@@ -113,8 +109,21 @@
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
     var ue = UE.getEditor('editor');
-     function  addDo(){
-         var AjaxURL= "${pageContext.request.contextPath}/admin/news/add_do";
+
+    $(document).ready(function(){
+        <%--var value ='${newsinf.contect}';--%>
+        ue.ready(function() {//编辑器初始化完成再赋值
+                ue.setContent( $('#contect_hid').html(),false);
+
+        });
+    });
+    function  addDo(id){
+        var AjaxURL= "${pageContext.request.contextPath}/admin/news/";
+        if(id!=null){
+            AjaxURL+="edit_do";
+        }else{
+            AjaxURL+="add_do";
+        }
          var contect = UE.getEditor('editor').getContent()
          var dataParam = $("#myform").serializeArray();
          dataParam.push({"name":"contect","value":contect})
