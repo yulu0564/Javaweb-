@@ -11,6 +11,7 @@ import com.yulu.mangger.service.SortService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -90,8 +91,8 @@ public class NewsController {
 		return modelAndView;
 	}
 
-	@RequestMapping("/news_inf")
-	public ModelAndView news_inf(HttpServletRequest request, Integer detail)
+	@RequestMapping("/news_inf/{detail}")
+	public ModelAndView news_inf(@PathVariable Integer detail)
 			throws Exception {
 		// 创建返回的对象modeAndView
 		ModelAndView modelAndView = new ModelAndView();
