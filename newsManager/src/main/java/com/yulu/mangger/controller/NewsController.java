@@ -112,8 +112,8 @@ public class NewsController {
 		return modelAndView;
 	}
 
-	@RequestMapping("/news_details")
-	public ModelAndView news_details(HttpServletRequest request, Integer detail)
+	@RequestMapping("/news_details/{detail}")
+	public ModelAndView news_details(@PathVariable Integer detail)
 			throws Exception {
 		// 创建返回的对象modeAndView
 		ModelAndView modelAndView = new ModelAndView();
@@ -147,7 +147,7 @@ public class NewsController {
 		comments.setTime(nowtime);
 		comments.setIsdelete("0");
 		commentsService.add_do(comments);
-		return "forward:news_inf.action?detail=" + newsid;
+		return "forward:news_inf?detail=" + newsid;
 	}
 
 	// 收藏新闻
@@ -159,7 +159,7 @@ public class NewsController {
 		collects.setNewsid(newsid);
 		collects.setIsdelete(0);
 		collectsService.add_do(collects);
-		return "forward:user_collect.action?userid=" + userid;
+		return "forward:user_collect?userid=" + userid;
 	}
 
 	// 取消收藏
