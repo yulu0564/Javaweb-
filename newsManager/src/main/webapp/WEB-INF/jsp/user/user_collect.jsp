@@ -22,7 +22,7 @@
 						<div style="margin-top: 30px">
 							<h2 class="title">
 								<a
-									href="${pageContext.request.contextPath}/news/news_inf?detail=${collectslist.newsid }&&type=${collectslist.sort}">${collectslist.title
+									href="${pageContext.request.contextPath}/news/news_inf/${collectslist.newsid}">${collectslist.title
 									}</a>
 							</h2>
 							<p class="text">${collectslist.contect}</p>

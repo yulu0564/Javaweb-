@@ -147,7 +147,7 @@ public class NewsController {
 		comments.setTime(nowtime);
 		comments.setIsdelete("0");
 		commentsService.add_do(comments);
-		return "forward:news_inf?detail=" + newsid;
+		return "forward:news_inf/" + newsid;
 	}
 
 	// 收藏新闻

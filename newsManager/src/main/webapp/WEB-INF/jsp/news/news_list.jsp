@@ -21,7 +21,7 @@
                 <c:forEach items="${newslist}" var="news" varStatus="vs">
 
                     <div style="margin-top: 30px">
-                        <a href="${pageContext.request.contextPath}/news/news_inf?detail=${news.id }&&type=${news.sort}">
+                        <a href="${pageContext.request.contextPath}/news/news_inf/${news.id}">
                             <h2 class="title">${news.title }</h2>
                         </a>
                         <p class="text">${news.digest}</p>
