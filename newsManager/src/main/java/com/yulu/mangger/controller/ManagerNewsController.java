@@ -39,7 +39,9 @@ public class ManagerNewsController {
 		// 将参数传入Service层进行处理
 		News news = new News();
 		news.setTitle(serach);
-		news.setSort(sort);
+		if(sort!=0) {
+			news.setSort(sort);
+		}
 		List<News> newslist = newsService.findNewsList(news);
 		List<Sort> sortlist = sortService.findSortList(null);
 		modelAndView.addObject("sortlist", sortlist);

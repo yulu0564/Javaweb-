@@ -29,7 +29,7 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li <c:if test="${param.type==null}">class="active" </c:if>><a
-						href="${pageContext.request.contextPath}/news/news_index">首页</a></li>
+						href="${pageContext.request.contextPath}/news/news_list">首页</a></li>
 					<c:if test="${sortlist ne null}">
 						<c:forEach items="${sortlist}" var="sort" varStatus="vs">
 							<li <c:if test="${sort.id==param.type}">class="active" </c:if>><a
@@ -52,7 +52,7 @@
 							data-toggle="dropdown">${username}<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
 								<li <c:if test="${param.type==null}">class="active" </c:if>><a
-									href="${pageContext.request.contextPath}/news/news_index">首页</a></li>
+									href="${pageContext.request.contextPath}/news/news_list">首页</a></li>
 								<li
 									class="<%="inf".equals(request.getParameter("fun"))
 						? "active"

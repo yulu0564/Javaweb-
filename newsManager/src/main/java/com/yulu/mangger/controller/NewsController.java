@@ -81,7 +81,9 @@ public class NewsController {
 		ModelAndView modelAndView = new ModelAndView();
 		// 将参数传入Service层进行处理
 		News news = new News();
-		news.setSort(type);
+		if(type!=null&&type!=0) {
+			news.setSort(type);
+		}
 		List<News> newslist = newsService.findNewsList(news);
 		List<Sort> sortlist = sortService.findSortList(null);
 		modelAndView.addObject("sortlist", sortlist);
