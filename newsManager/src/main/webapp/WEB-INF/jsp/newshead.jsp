@@ -7,12 +7,11 @@
         rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/res/bootstrap/css/bootstrap.css"
                                              rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/res/bootstrap/css/bootstrap-theme.min.css"
-      rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/res/bootstrap/css/text.css"
       rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/jquery-migrate-1.2.1.js"></script>
 <script src="${pageContext.request.contextPath}/res/bootstrap/js/bootstrap.min.js"
         type="text/javascript"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/res/jquery-1.11.0.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/res/jquery-migrate-1.2.1.js"></script>
 </head>

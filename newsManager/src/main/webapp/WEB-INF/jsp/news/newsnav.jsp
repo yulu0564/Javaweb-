@@ -1,5 +1,7 @@
 <%@page pageEncoding="utf-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <c:if test="${username==null}">
 	<div id="myAlert" class="alert alert-warning ">
 		<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>您好！</strong>您还没有登录!
@@ -182,7 +184,7 @@
 	</div>
 </div>
 <script>
-	$(function() {
-		$("[data-toggle='tooltip']").tooltip();
-	});
+//	$(function() {
+//		$("[data-toggle='tooltip']").tooltip();
+//	});
 </script>
