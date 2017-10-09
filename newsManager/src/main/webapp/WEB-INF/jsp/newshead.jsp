@@ -5,6 +5,10 @@
 <link
         href="${pageContext.request.contextPath}/res/bootstrap/css/bootstrap.min.css"
         rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/res/bootstrap/css/bootstrap.css"
+                                             rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/res/bootstrap/css/bootstrap-theme.min.css"
+      rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/res/bootstrap/css/text.css"
       rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/res/bootstrap/js/bootstrap.min.js"
