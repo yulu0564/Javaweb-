@@ -1,6 +1,7 @@
 package com.yulu.mangger.service.impl;
 
 import com.yulu.mangger.bean.Collects;
+import com.yulu.mangger.bean.User;
 import com.yulu.mangger.dao.CollectsMapper;
 import com.yulu.mangger.service.CollectsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,20 +22,25 @@ public class CollectsServiceImp implements CollectsService {
 
 	@Override
 	public List<Collects> findCollectsList(Collects collects) throws Exception {
-		// TODO Auto-generated method stub
 		return collectsMapper.findCollectsList(collects);
 	}
 
 	@Override
 	public void delete_do(Integer id) throws Exception {
-		// TODO Auto-generated method stub
 		collectsMapper.deleteByPrimaryKey(id);
 	}
 
 	@Override
 	public void add_do(Collects collects) throws Exception {
-		// TODO Auto-generated method stub
 		collectsMapper.insertSelective(collects);
+	}
+
+	@Override
+	public Collects findCollects(Integer newsid, Integer userid) throws Exception {
+		Collects mCollects = new Collects();
+		mCollects.setNewsid(newsid);
+		mCollects.setUserid(userid);
+		return collectsMapper.findCollects(mCollects);
 	}
 
 }

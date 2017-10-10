@@ -205,4 +205,10 @@
 		</if>
 		order by id desc
 	</select>
+
+	<select id="findCollects" parameterType="com.yulu.mangger.bean.Collects"
+			resultType="com.yulu.mangger.bean.Collects">
+		select * from collects where newsid=#{newsid} and
+		userid=#{userid}
+	</select>
 </mapper>

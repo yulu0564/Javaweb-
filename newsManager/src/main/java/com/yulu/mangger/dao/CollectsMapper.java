@@ -32,4 +32,5 @@ public interface CollectsMapper {
 	int updateByPrimaryKey(Collects record);
 
 	List<Collects> findCollectsList(Collects collects);
+	Collects findCollects(Collects collects);
 }

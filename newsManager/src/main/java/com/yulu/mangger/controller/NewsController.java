@@ -1,9 +1,7 @@
 package com.yulu.mangger.controller;
 
-import com.yulu.mangger.bean.Collects;
-import com.yulu.mangger.bean.Comments;
-import com.yulu.mangger.bean.News;
-import com.yulu.mangger.bean.Sort;
+import com.alibaba.fastjson.JSONObject;
+import com.yulu.mangger.bean.*;
 import com.yulu.mangger.service.CollectsService;
 import com.yulu.mangger.service.CommentsService;
 import com.yulu.mangger.service.NewsService;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -94,13 +93,14 @@ public class NewsController {
 	}
 
 	@RequestMapping("/news_inf/{detail}")
-	public ModelAndView news_inf(@PathVariable Integer detail)
+	public ModelAndView news_inf(HttpSession session,@PathVariable Integer detail)
 			throws Exception {
 		// 创建返回的对象modeAndView
 		ModelAndView modelAndView = new ModelAndView();
 		// 将参数传入Service层进行处理
 		News newsinf = newsService.findNewsById(detail);
 		List<Sort> sortlist = sortService.findSortList(null);
+
 		Comments comments = new Comments();
 		comments.setNewsid(detail);
 		List<Comments> commentslist = commentsService
@@ -109,6 +109,11 @@ public class NewsController {
 		modelAndView.addObject("commentslist", commentslist);
 		modelAndView.addObject("sortlist", sortlist);
 		modelAndView.addObject("newsinf", newsinf);
+		Integer userid = (Integer) session.getAttribute("userid");
+		if(userid!=null) {
+			Collects collects = collectsService.findCollects(detail, userid);
+			modelAndView.addObject("collects", collects);
+		}
 		// 返回到jsp显示
 		modelAndView.setViewName("news/news_inf");
 		return modelAndView;
@@ -152,23 +157,4 @@ public class NewsController {
 		return "forward:news_inf/" + newsid;
 	}
 
-	// 收藏新闻
-	@RequestMapping("/collect")
-	public String collect(HttpServletRequest request, Integer newsid,
-			Integer userid) throws Exception {
-		Collects collects = new Collects();
-		collects.setUserid(userid);
-		collects.setNewsid(newsid);
-		collects.setIsdelete(0);
-		collectsService.add_do(collects);
-		return "forward:user_collect?userid=" + userid;
-	}
-
-	// 取消收藏
-	@RequestMapping("/delete_do")
-	public String delete_do(HttpServletRequest request, Integer id,
-			Integer userid) throws Exception {
-		collectsService.delete_do(id);
-		return "forward:user_collect.action?userid=" + userid;
-	}
 }

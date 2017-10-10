@@ -1,5 +1,6 @@
 package com.yulu.mangger.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yulu.mangger.bean.Collects;
 import com.yulu.mangger.bean.Comments;
 import com.yulu.mangger.bean.User;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.util.Date;
@@ -58,6 +60,25 @@ public class UserController {
 			return "redirect:/user/userError";
 		}
 
+	}
+
+	// 登录
+	@RequestMapping("/userLogin2")
+	public void userLogin(HttpSession session,
+						String username, String password,
+						HttpServletResponse response) throws Exception{
+		User r = userService.findLoginUser(username, password);
+		if (r != null) {
+			if (r.getIdent() == 0) {
+				session.setAttribute("username", r.getUsername());
+				session.setAttribute("userid", r.getId());
+				response.getWriter().println(JSONObject.toJSONString(r));
+			} else {
+				response.getWriter().println("error");
+			}
+		} else {
+			response.getWriter().println("error");
+		}
 	}
 
 	// 登录失败页面

@@ -91,7 +91,7 @@
 						aria-hidden="true">×</button>
 					<h4 class="modal-title" id="myModalLabel">登录</h4>
 				</div>
-				<form role="form" method="post" action="userLogin">
+				<form role="form" method="post" id="login">
 					<div class="modal-body">
 						<div style="width: 400px; margin-left: 90px">
 							<div class="input-group">
@@ -109,8 +109,8 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success"
-							style="width: 400px; margin-right: 80px">
+						<button type="button" class="btn btn-success"
+							style="width: 400px; margin-right: 80px" onclick="login()">
 							<B> 登录 </B>
 						</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal"
@@ -184,7 +184,24 @@
 	</div>
 </div>
 <script>
-//	$(function() {
-//		$("[data-toggle='tooltip']").tooltip();
-//	});
+	$(function() {
+		$("[data-toggle='tooltip']").tooltip();
+	});
+    function  login(){
+        var AjaxURL= "${pageContext.request.contextPath}/user/userLogin2";
+        var dataParam = $("#login").serializeArray();
+        $.ajax({
+            type:'post',
+            data:dataParam,
+            url:AjaxURL,
+            cache:false,
+            success:function(data){
+                if(data=="error"){
+                    alert("账号或密码错误");
+                }else{
+                    window.location.reload();
+                }
+            }
+        });
+    }
 </script>

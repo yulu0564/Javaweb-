@@ -6,10 +6,6 @@
     <jsp:include page="../newshead.jsp">
         <jsp:param value="新闻-列表" name="title"/>
     </jsp:include>
-    <script src="${pageContext.request.contextPath}/res/bootstrap/js/bootstrap-dialog.min.js"
-            type="text/javascript"></script>
-    <link href="${pageContext.request.contextPath}/res/bootstrap/css/bootstrap-dialog.min.css"
-          rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="container-fluid">
