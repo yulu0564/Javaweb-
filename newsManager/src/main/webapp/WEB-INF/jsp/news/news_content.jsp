@@ -10,16 +10,20 @@
                     <div class="row">
                         <div class="col-md-8">
                             <h2>${newsinf.title }</h2>
-                            <c:if test="${collects==null}">
-                                <button type="button" class="btn btn-sm btn-warning pull-right" onclick="collect()">
-                                    收藏
-                                </button>
-                            </c:if>
-                            <c:if test="${collects!=null}">
-                                <button type="button" class="btn btn-sm btn-warning pull-right" onclick="delete_do()">
-                                    取消收藏
-                                </button>
-                            </c:if>
+                            <div>
+                                <c:if test="${collects==null}">
+                                    <button type="button" class="btn btn-sm btn-warning pull-right"
+                                            onclick="collect(this)">
+                                        收藏
+                                    </button>
+                                </c:if>
+                                <c:if test="${collects!=null}">
+                                    <button type="button" class="btn btn-sm btn-warning pull-right"
+                                            onclick="delete_do(this)">
+                                        取消收藏
+                                    </button>
+                                </c:if>
+                            </div>
                             <p>
                                 <small>${newsinf.fromuser}<cite
                                         style="margin-left: 10px">${newsinf.time}</cite><br>${newsinf.fromto}
@@ -94,29 +98,47 @@
 </div>
 
 <script>
-    function collect() {
-        if("${newsinf.id}"!=""){
-        var AjaxURL = "${pageContext.request.contextPath}/collect/collect2?newsid=${newsinf.id}&&userid=${userid}";
-        $.ajax({
-            type: 'get',
-            url: AjaxURL,
-            cache: false,
-            success: function (data) {
-
-            }
-        });
-        }else{
+    function collect(obj) {
+        if ("${newsinf.id}" != "") {
+            var AjaxURL = "${pageContext.request.contextPath}/collect/collect2?newsid=${newsinf.id}&userid=${userid}";
+            var objFu = $(obj).parent();
+            $.ajax({
+                type: 'get',
+                url: AjaxURL,
+                cache: false,
+                dataType: 'json',
+                success: function (data) {
+                    if (data["code"] == 0) {
+                        alert(data["msg"]);
+                        objFu.empty();
+                        objFu.append($("<button type=\"button\" class=\"btn btn-sm btn-warning pull-right\" onclick=\"delete_do(this)\">\n" +
+                            "                                    取消收藏\n" +
+                            "                                </button>"));
+                    }
+                }
+            });
+        } else {
             alert("请先登录");
         }
     }
-    function delete_do() {
-        var AjaxURL = "${pageContext.request.contextPath}/collect/delete_do?id=${collects.id}&&userid=${userid}";
+
+    function delete_do(obj) {
+        var AjaxURL = "${pageContext.request.contextPath}/collect/delete_do?id=${collects.id}&userid=${userid}";
+        var objFu = $(obj).parent();
         $.ajax({
             type: 'get',
             url: AjaxURL,
             cache: false,
+            dataType: 'json',
             success: function (data) {
-
+                if (data["code"] == 0) {
+                    alert(data["msg"]);
+                    objFu.empty();
+                    objFu.append($(" <button type=\"button\" class=\"btn btn-sm btn-warning pull-right\"\n" +
+                        "                                            onclick=\"collect(this)\">\n" +
+                        "                                        收藏\n" +
+                        "                                    </button>"));
+                }
             }
         });
     }

@@ -76,10 +76,14 @@ public class CollectController {
 
 	// 取消收藏
 	@RequestMapping("/delete_do")
-	public String delete_do(HttpServletRequest request, Integer id,
-							Integer userid) throws Exception {
+	public void delete_do( Integer id,
+							Integer userid,HttpServletResponse response) throws Exception {
 		collectsService.delete_do(id);
-		return "forward:user_collect?userid=" + userid;
+		ResultBean<Collects> mResultBean = new ResultBean<Collects>();
+		response.setContentType("application/json; charset=utf-8");
+		mResultBean.setMsg("取消收藏成功");
+		mResultBean.setCode(0);
+		response.getWriter().println(JSONObject.toJSONString(mResultBean));
 	}
 
 }
