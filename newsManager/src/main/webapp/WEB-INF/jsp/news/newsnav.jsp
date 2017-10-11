@@ -51,7 +51,7 @@
 				<c:if test="${username!=null}">
 					<ul class="nav navbar-nav navbar-right" style="margin-right: 15px">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">${username}<strong class="caret"></strong></a>
+							data-toggle="dropdown">${nickname}<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
 								<li <c:if test="${param.type==null}">class="active" </c:if>><a
 									href="${pageContext.request.contextPath}/news/news_list">首页</a></li>

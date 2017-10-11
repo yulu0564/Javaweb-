@@ -9,6 +9,31 @@
 		<result column="contects" property="contects" jdbcType="VARCHAR" />
 		<result column="time" property="time" jdbcType="VARCHAR" />
 		<result column="isdelete" property="isdelete" jdbcType="VARCHAR" />
+		<association  property="user" javaType="com.yulu.mangger.bean.User">
+			<id column="id" property="id" jdbcType="INTEGER"/>
+			<result column="username" property="username" jdbcType="VARCHAR"/>
+			<result column="password" property="password" jdbcType="VARCHAR"/>
+			<result column="sex" property="sex" jdbcType="INTEGER"/>
+			<result column="email" property="email" jdbcType="VARCHAR"/>
+			<result column="telephone" property="telephone" jdbcType="INTEGER"/>
+			<result column="ident" property="ident" jdbcType="INTEGER"/>
+			<result column="isdelete" property="isdelete" jdbcType="INTEGER"/>
+			<result column="status" property="status" jdbcType="INTEGER"/>
+			<result column="createDate" property="createDate" jdbcType="TIMESTAMP"/>
+			<result column="nickname" property="nickname" jdbcType="VARCHAR"/>
+			<result column="head_image" property="head_image" jdbcType="VARCHAR"/>
+		</association>
+		<association  property="news" javaType="com.yulu.mangger.bean.News">
+			<id column="id" property="id" jdbcType="INTEGER" />
+			<result column="title" property="title" jdbcType="VARCHAR" />
+			<result column="sort" property="sort" jdbcType="INTEGER" />
+			<result column="contect" property="contect" jdbcType="VARCHAR" />
+			<result column="fromto" property="fromto" jdbcType="VARCHAR" />
+			<result column="fromuser" property="fromuser" jdbcType="VARCHAR" />
+			<result column="time" property="time" jdbcType="VARCHAR" />
+			<result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+			<result column="digest" property="digest" jdbcType="VARCHAR" />
+		</association>
 	</resultMap>
 	<sql id="Example_Where_Clause" >
 		<where >
@@ -241,18 +266,26 @@
     where id = #{id,jdbcType=INTEGER}
 	</update>
 	<select id="findCommentsList" parameterType="com.yulu.mangger.bean.Comments"
-		resultType="com.yulu.mangger.bean.CommentsCustom">
-		select news.title,news.sort,user_inf.username,comments.* from comments join user_inf on comments.userid=user_inf.id join news on comments.newsid=news.id where comments.isdelete=0
+			resultMap="BaseResultMap" >
+		select c.* ,u.*,n.*from comments c,user_inf u ,news n where c.isdelete=0
 		<if test="contects!=null">
-		 and contects like '%${contects}%'
+		 and c.contects = '%${contects}%'
 		</if>
 		<if test="newsid!=null">
-			and newsid like '${newsid}'
+			and c.newsid = '${newsid}'
+			and c.newsid = n.id
 		</if>
 		<if test="userid!=null">
-			and userid like '${userid}'
+			and c.userid = '${userid}'
+			and c.userid = u.id
 		</if>
-		order by time asc
+		order by c.time asc
 	</select>
-	
+	<select id="findCommentsId" parameterType="int"
+			resultMap="BaseResultMap">
+		select c.* ,u.*,n.*from comments c,user_inf u ,news n where c.isdelete=0
+			and c.id = #{id}
+			and c.newsid = n.id
+			and c.userid = u.id
+	</select>
 </mapper>

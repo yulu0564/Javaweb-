@@ -39,31 +39,24 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#">全部评论</a></li>
                     </ul>
-                    <div class="media">
+                    <div class="media" id="commentslist_id">
 
                         <c:if test="${commentslist ne null}">
                             <c:forEach items="${commentslist}" var="commentslist"
                                        varStatus="vs">
-                                <a href="#" class="pull-left"><img
-                                        alt="Bootstrap Media Preview"
-                                        src="${pageContext.request.contextPath}/res/images/head.jpg"
-                                        class="media-object" style="height: 30px"/></a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">${commentslist.username}</h4>
-                                        ${commentslist.contects}
-                                    <p style="position: absolute; right: 10px">
-                                        <small><cite>--${commentslist.time}</cite></small>
-                                    </p>
-                                    <div class="media">
-                                        <a href="#" class="pull-left"><img
-                                                alt="Bootstrap Media Another Preview"
-                                                src="${pageContext.request.contextPath}/res/images/head.jpg"
-                                                class="media-object" style="height: 30px"/></a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">回复功能</h4>
-                                            回复功能暂未完成
-                                        </div>
+                                <div style="margin-top: 30px">
+                                    <a href="#" class="pull-left"><img
+                                            alt="暂无头像"
+                                            src="${pageContext.request.contextPath}/res/images/head.jpg"
+                                            class="media-object" style="height: 30px"/></a>
+                                    <div class="media-body" >
+                                        <h4 style="margin-left: 30px"class="media-heading">${commentslist.user.username}</h4>
+                                            ${commentslist.contects}
+                                        <p style="position: absolute; right: 10px">
+                                            <small><cite>--${commentslist.time}</cite></small>
+                                        </p>
                                     </div>
+                                    <div style="width:800px; border:1px solid black;"></div>
                                 </div>
                             </c:forEach>
                         </c:if>
@@ -82,13 +75,13 @@
                 </center>
             </c:if>
             <c:if test="${userid!=null}">
-                <form action="add_comments" method="post">
+                <form id="add_comments" method="post">
                     <input type="hidden" name="userid" value="${userid }"> <input
                         type="hidden" name="newsid" value="${newsinf.id }">
                     <textarea rows="6" class="col-md-12" style="margin-top: 80px"
                               maxlength="100" name="contects"></textarea>
-                    <button type="submit" style="margin-top: 10px; width: 100px"
-                            class="btn btn-primary pull-right">发表评论
+                    <button type="buttom" style="margin-top: 10px; width: 100px"
+                            class="btn btn-primary pull-right" onclick="add_comments()">发表评论
                     </button>
                 </form>
             </c:if>
@@ -138,6 +131,35 @@
                         "                                            onclick=\"collect(this)\">\n" +
                         "                                        收藏\n" +
                         "                                    </button>"));
+                }
+            }
+        });
+    }
+    function add_comments() {
+        var obj = $("#commentslist_id");
+        var AjaxURL = "${pageContext.request.contextPath}/comment/add_comments";
+        var dataParam = $("#add_comments").serializeArray();
+        $.ajax({
+            type: 'post',
+            url: AjaxURL,
+            cache: false,
+            data:dataParam,
+            dataType: 'json',
+            success: function (data) {
+                if (data["code"] == 0) {
+                    alert(data["msg"]);
+                    var comment = data["data"];
+                    <%--var appendValue = '<div style="margin-top: 30px">';--%>
+                    <%--appendValue+=' <a href="#" class="pull-left"><img alt="暂无头像" src="${pageContext.request.contextPath}/res/images/head.jpg" class="media-object" style="height: 30px"/></a>';--%>
+                    <%--appendValue+='<div class="media-body">';--%>
+                    <%--appendValue+='<h4 class="media-heading">';--%>
+                    <%--appendValue+=comment["user"]["username"];--%>
+                    <%--appendValue+='</h4>';--%>
+                    <%--appendValue+=comment["contects"];--%>
+                    <%--appendValue+='<p style="position: absolute; right: 10px"> <small><cite>--${commentslist.time}</cite></small> </p> </div>';--%>
+                    <%--appendValue+='<div style="width:500px; border:1px solid red;"></div>';--%>
+                    <%--appendValue+="</div>";--%>
+//                    obj.append($(appendValue));
                 }
             }
         });

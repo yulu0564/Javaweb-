@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface CommentsService {
 	public List<Comments> findCommentsList(Comments comments) throws Exception;
-
+	public Comments findCommentsId(int id) throws Exception;
 	public void delete_do(Integer id) throws Exception;
 
-	public void add_do(Comments comments) throws Exception;
+	public int add_do(Comments comments) throws Exception;
 
 }

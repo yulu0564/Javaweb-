@@ -3,8 +3,9 @@ package com.yulu.mangger.bean;
 public class Comments {
     private Integer id;
 
+    private User user;
     private Integer userid;
-
+    private News news;
     private Integer newsid;
 
     private Integer replyid;
@@ -21,14 +22,6 @@ public class Comments {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
     }
 
     public Integer getNewsid() {
@@ -69,5 +62,29 @@ public class Comments {
 
     public void setIsdelete(String isdelete) {
         this.isdelete = isdelete == null ? null : isdelete.trim();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    public News getNews() {
+        return news;
+    }
+
+    public void setNews(News news) {
+        this.news = news;
     }
 }

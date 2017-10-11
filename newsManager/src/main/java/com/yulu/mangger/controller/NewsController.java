@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -138,23 +139,6 @@ public class NewsController {
 		// 返回到jsp显示
 		modelAndView.setViewName("news/news_details");
 		return modelAndView;
-	}
-
-	// 添加新闻
-	@RequestMapping("/add_comments")
-	public String add_comments(HttpServletRequest request, Integer newsid,
-			Integer userid, String contects) throws Exception {
-		Date date = new Date();
-		SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String nowtime = time.format(date);
-		Comments comments = new Comments();
-		comments.setUserid(userid);
-		comments.setNewsid(newsid);
-		comments.setContects(contects);
-		comments.setTime(nowtime);
-		comments.setIsdelete("0");
-		commentsService.add_do(comments);
-		return "forward:news_inf/" + newsid;
 	}
 
 }

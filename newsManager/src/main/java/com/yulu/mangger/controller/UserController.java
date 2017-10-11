@@ -51,6 +51,7 @@ public class UserController {
 		if (r != null) {
 			if (r.getIdent() == 0) {
 				session.setAttribute("username", r.getUsername());
+				session.setAttribute("nickname", r.getNickname());
 				session.setAttribute("userid", r.getId());
 				return "redirect:/news/news_index";
 			} else {
@@ -72,6 +73,7 @@ public class UserController {
 			if (r.getIdent() == 0) {
 				session.setAttribute("username", r.getUsername());
 				session.setAttribute("userid", r.getId());
+				session.setAttribute("nickname", r.getNickname());
 				response.getWriter().println(JSONObject.toJSONString(r));
 			} else {
 				response.getWriter().println("error");

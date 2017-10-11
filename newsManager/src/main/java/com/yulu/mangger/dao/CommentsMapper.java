@@ -32,5 +32,5 @@ public interface CommentsMapper {
 	int updateByPrimaryKey(Comments record);
 
 	List<Comments> findCommentsList(Comments comments);
-
+	Comments findCommentsId(Integer id);
 }

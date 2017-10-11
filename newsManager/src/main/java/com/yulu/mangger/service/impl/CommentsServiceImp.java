@@ -23,6 +23,11 @@ public class CommentsServiceImp implements CommentsService {
 		return commentsMapper.findCommentsList(comments);
 	}
 
+	@Override
+	public Comments findCommentsId(int id) throws Exception {
+		return commentsMapper.findCommentsId(id);
+	}
+
 
 	@Override
 	public void delete_do(Integer id) throws Exception {
@@ -31,9 +36,9 @@ public class CommentsServiceImp implements CommentsService {
 	}
 
 	@Override
-	public void add_do(Comments comments) throws Exception {
+	public int add_do(Comments comments) throws Exception {
 		// TODO Auto-generated method stub
-		commentsMapper.insertSelective(comments);
+		return  commentsMapper.insertSelective(comments);
 	}
 
 	
