@@ -149,17 +149,25 @@
                 if (data["code"] == 0) {
                     alert(data["msg"]);
                     var comment = data["data"];
-                    <%--var appendValue = '<div style="margin-top: 30px">';--%>
-                    <%--appendValue+=' <a href="#" class="pull-left"><img alt="暂无头像" src="${pageContext.request.contextPath}/res/images/head.jpg" class="media-object" style="height: 30px"/></a>';--%>
-                    <%--appendValue+='<div class="media-body">';--%>
-                    <%--appendValue+='<h4 class="media-heading">';--%>
-                    <%--appendValue+=comment["user"]["username"];--%>
-                    <%--appendValue+='</h4>';--%>
-                    <%--appendValue+=comment["contects"];--%>
-                    <%--appendValue+='<p style="position: absolute; right: 10px"> <small><cite>--${commentslist.time}</cite></small> </p> </div>';--%>
-                    <%--appendValue+='<div style="width:500px; border:1px solid red;"></div>';--%>
-                    <%--appendValue+="</div>";--%>
-//                    obj.append($(appendValue));
+                    var appendValue ="<div style=\"margin-top: 30px\">\n" +
+                        "                                    <a href=\"#\" class=\"pull-left\"><img\n" +
+                        "                                            alt=\"暂无头像\"\n" +
+                        "                                            src=\"${pageContext.request.contextPath}/res/images/head.jpg\"\n" +
+                        "                                            class=\"media-object\" style=\"height: 30px\"/></a>\n" +
+                        "                                    <div class=\"media-body\" >\n" +
+                        "                                        <h4 style=\"margin-left: 30px\"class=\"media-heading\">";
+                    appendValue+=comment["user"]["username"];
+                    appendValue+="</h4>";
+                    appendValue+=comment["contects"];
+                    appendValue+=" <p style=\"position: absolute; right: 10px\">\n" +
+                        "                                            <small><cite>--";
+                    appendValue+=comment["time"];
+                    appendValue+="</cite></small>\n" +
+                        "                                        </p>\n" +
+                        "                                    </div>\n" +
+                        "                                    <div style=\"width:800px; border:1px solid black;\"></div>\n" +
+                        "                                </div>";
+                    obj.append($(appendValue));
                 }
             }
         });
