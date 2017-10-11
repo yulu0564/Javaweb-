@@ -49,7 +49,7 @@ public class CommentController {
 		mResultBean.setData(comments);
 		response.getWriter().println(JSONObject.toJSONString(mResultBean));
 	}
-	// 添加评论
+	// 获取评论列表
 	@RequestMapping("/comments_list")
 	public void comments_list(String newsid,HttpServletResponse response) throws Exception {
 		Comments comments = new Comments();
@@ -63,5 +63,14 @@ public class CommentController {
 		mResultBean.setData(commentslist);
 		response.getWriter().println(JSONObject.toJSONString(mResultBean));
 	}
-
+	//删除评论
+	@RequestMapping("/delete_do")
+	public void delete_do( Integer id,HttpServletResponse response) throws Exception {
+		commentsService.delete_do(id);
+		ResultBean mResultBean = new ResultBean();
+		response.setContentType("application/json; charset=utf-8");
+		mResultBean.setMsg("删除成功");
+		mResultBean.setCode(0);
+		response.getWriter().println(JSONObject.toJSONString(mResultBean));
+	}
 }
