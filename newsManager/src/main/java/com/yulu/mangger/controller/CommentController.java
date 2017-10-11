@@ -5,6 +5,7 @@ import com.yulu.mangger.bean.Collects;
 import com.yulu.mangger.bean.Comments;
 import com.yulu.mangger.bean.ResultBean;
 import com.yulu.mangger.service.CommentsService;
+import com.yulu.util.DataUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 // 定义该Controller的根访问路径 /comment
@@ -45,6 +47,20 @@ public class CommentController {
 		mResultBean.setMsg("评论成功");
 		mResultBean.setCode(0);
 		mResultBean.setData(comments);
+		response.getWriter().println(JSONObject.toJSONString(mResultBean));
+	}
+	// 添加评论
+	@RequestMapping("/comments_list")
+	public void comments_list(String newsid,HttpServletResponse response) throws Exception {
+		Comments comments = new Comments();
+		comments.setNewsid(DataUtils.parseInt(newsid));
+		List<Comments> commentslist = commentsService
+				.findCommentsList(comments);
+		ResultBean<List<Comments>> mResultBean = new ResultBean<List<Comments>>();
+		response.setContentType("application/json; charset=utf-8");
+		mResultBean.setMsg("评论列表");
+		mResultBean.setCode(0);
+		mResultBean.setData(commentslist);
 		response.getWriter().println(JSONObject.toJSONString(mResultBean));
 	}
 

@@ -12,14 +12,6 @@
 		<association  property="user" javaType="com.yulu.mangger.bean.User">
 			<id column="id" property="id" jdbcType="INTEGER"/>
 			<result column="username" property="username" jdbcType="VARCHAR"/>
-			<result column="password" property="password" jdbcType="VARCHAR"/>
-			<result column="sex" property="sex" jdbcType="INTEGER"/>
-			<result column="email" property="email" jdbcType="VARCHAR"/>
-			<result column="telephone" property="telephone" jdbcType="INTEGER"/>
-			<result column="ident" property="ident" jdbcType="INTEGER"/>
-			<result column="isdelete" property="isdelete" jdbcType="INTEGER"/>
-			<result column="status" property="status" jdbcType="INTEGER"/>
-			<result column="createDate" property="createDate" jdbcType="TIMESTAMP"/>
 			<result column="nickname" property="nickname" jdbcType="VARCHAR"/>
 			<result column="head_image" property="head_image" jdbcType="VARCHAR"/>
 		</association>
@@ -27,12 +19,6 @@
 			<id column="id" property="id" jdbcType="INTEGER" />
 			<result column="title" property="title" jdbcType="VARCHAR" />
 			<result column="sort" property="sort" jdbcType="INTEGER" />
-			<result column="contect" property="contect" jdbcType="VARCHAR" />
-			<result column="fromto" property="fromto" jdbcType="VARCHAR" />
-			<result column="fromuser" property="fromuser" jdbcType="VARCHAR" />
-			<result column="time" property="time" jdbcType="VARCHAR" />
-			<result column="isdelete" property="isdelete" jdbcType="INTEGER" />
-			<result column="digest" property="digest" jdbcType="VARCHAR" />
 		</association>
 	</resultMap>
 	<sql id="Example_Where_Clause" >
