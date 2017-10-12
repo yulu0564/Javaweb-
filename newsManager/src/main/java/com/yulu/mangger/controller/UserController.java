@@ -237,7 +237,7 @@ public class UserController {
         }
         user = new User();
         user.setId(id);
-        user.setUsername(nickname);
+        user.setNickname(nickname);
         user.setPassword(password);
         user.setSex(sex);
         user.setEmail(email);

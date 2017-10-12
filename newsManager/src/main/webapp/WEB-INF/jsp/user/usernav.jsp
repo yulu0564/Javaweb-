@@ -16,20 +16,20 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a
-						href="${pageContext.request.contextPath}/news/news_index.action">首页</a></li>
+						href="${pageContext.request.contextPath}/news/news_list">首页</a></li>
 					<li
 						class="<%="inf".equals(request.getParameter("fun")) ? "active" : ""%>"><a
-						href="${pageContext.request.contextPath}/news/user_inf.action">个人中心</a></li>
+						href="${pageContext.request.contextPath}/user/user_inf">个人中心</a></li>
 					<li
 						class="<%="collect".equals(request.getParameter("fun"))
 					? "active"
 					: ""%>"><a
-						href="${pageContext.request.contextPath}/news/user_collect.action?userid=${userid}">我的收藏</a></li>
+						href="${pageContext.request.contextPath}/user/user_collect?userid=${userid}">我的收藏</a></li>
 					<li
 						class="<%="comment".equals(request.getParameter("fun"))
 					? "active"
 					: ""%>"><a
-						href="${pageContext.request.contextPath}/news/user_comment.action?userid=${userid}">我的评论</a></li>
+						href="${pageContext.request.contextPath}/user/user_comment?userid=${userid}">我的评论</a></li>
 				</ul>
 				<c:if test="${username==null}">
 					<ul class="nav navbar-nav navbar-right">
@@ -74,67 +74,9 @@
 		</nav>
 	</div>
 
-	<div class="modal fade" id="modal-container-181251" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h4 class="modal-title" id="myModalLabel">注册</h4>
-				</div>
-				<form method="post" action="register.action">
-					<div class="modal-body">
-						<div style="width: 400px; margin-left: 90px">
-							<div class="input-group">
-								<span class="input-group-addon">昵称</span> <input type="text"
-									name="username" class="form-control" placeholder="请输入用户名"
-									data-toggle="tooltip" data-placement="right" title="请输入用户名">
-							</div>
-						</div>
-						<div style="width: 400px; margin-left: 90px">
-							<div class="input-group" style="margin-top: 20px">
-								<span class="input-group-addon">密码</span> <input type="password"
-									name="password" class="form-control" placeholder="请输入密码"
-									data-toggle="tooltip" data-placement="right" title="请输入密码">
-							</div>
-						</div>
-						<div style="width: 400px; margin-left: 90px">
-							<div class="input-group" style="margin-top: 20px">
-								<span class="input-group-addon">性别</span> <select
-									class="form-control" name="sex">
-									<option value="0" selected="selected">男</option>
-									<option value="1">女</option>
-								</select>
-							</div>
-						</div>
-						<div style="width: 400px; margin-left: 90px">
-							<div class="input-group" style="margin-top: 20px">
-								<span class="input-group-addon">邮箱</span> <input type="text"
-									name="email" class="form-control" placeholder="请输入邮箱"
-									data-toggle="tooltip" data-placement="right"
-									title="邮箱格式:xx@xxx.com">
-							</div>
-						</div>
-						<div style="width: 400px; margin-left: 90px">
-							<div class="input-group" style="margin-top: 20px">
-								<span class="input-group-addon">电话</span> <input type="text"
-									name="telephone" class="form-control" placeholder="请输入手机号"
-									data-toggle="tooltip" data-placement="right" title="请输入手机号">
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button class="btn btn-success"
-							style="width: 400px; margin-right: 80px">提交</button>
-						<button class="btn btn-default" data-dismiss="modal"
-							style="width: 400px; margin-right: 80px; margin-top: 20px;">取消</button>
+	<jsp:include page="../user/login_dialg.jsp"></jsp:include>
 
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+	<jsp:include page="../user/register_dialg.jsp"></jsp:include>
 </div>
 <script>
 	$(function() {
