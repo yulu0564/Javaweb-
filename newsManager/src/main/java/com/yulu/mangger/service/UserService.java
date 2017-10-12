@@ -23,7 +23,7 @@ public interface UserService {
 
     public void ok_do(Integer id) throws Exception;
 
-    public void add_do(User user) throws Exception;
+    public int add_do(User user) throws Exception;
 
     public User findLoginUser(String username, String password)
             throws Exception;

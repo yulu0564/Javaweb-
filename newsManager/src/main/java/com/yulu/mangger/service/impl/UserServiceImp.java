@@ -47,9 +47,9 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void add_do(User user) throws Exception {
+    public int add_do(User user) throws Exception {
         // TODO Auto-generated method stub
-        usermapper.insertSelective(user);
+        return usermapper.insertSelective(user);
     }
 
     @Override

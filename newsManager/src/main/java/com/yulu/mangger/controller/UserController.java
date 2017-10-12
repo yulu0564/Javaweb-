@@ -157,11 +157,12 @@ public class UserController {
         user.setCreateDate(new Date());
         user.setNickname(nickname);
         user.setHead_image(head_image);
-        userService.add_do(user);
+        int userid = userService.add_do(user);
         mResultBean.setCode(ErrorCode.SUCCESS);
         mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.SUCCESS));
         session.setAttribute("username", username);
-        session.setAttribute("password", password);
+        session.setAttribute("nickname", nickname);
+        session.setAttribute("userid", userid);
         mResultBean.setCode(ErrorCode.SUCCESS);
         mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.SUCCESS));
         mResultBean.setData(user);
@@ -283,7 +284,7 @@ public class UserController {
 
     private boolean getFormat(ResultBean mResultBean, String nickname, String password, String email,
                               String telephone, HttpServletResponse response) throws Exception {
-        if (DataUtils.isNull(nickname) || password.length() < 6) {
+        if (DataUtils.isNull(nickname)) {
             mResultBean.setCode(ErrorCode.LOGIN_FORMAT_PASSWORD);
             mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_FORMAT_PASSWORD));
             response.getWriter().println(JSONObject.toJSONString(mResultBean));
