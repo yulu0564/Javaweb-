@@ -18,12 +18,12 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-7">
-            <form method="post" action="user/user_inf_edit_do">
+            <form method="post" action="${pageContext.request.contextPath}/user/user_inf_edit_do">
                 <input name="id" type="hidden" value="${userinf.id}">
                 <div style="width: 400px; margin-left: 230px">
                     <div class="input-group">
                         <span class="input-group-addon">昵称</span> <input type="text"
-                                                                         name="username" value="${userinf.username}"
+                                                                         name="nickname" value="${userinf.nickname}"
                                                                          class="form-control"
                                                                          placeholder="请输入用户名">
                     </div>

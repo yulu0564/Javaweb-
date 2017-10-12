@@ -43,28 +43,28 @@
 				<c:if test="${username!=null}">
 					<ul class="nav navbar-nav navbar-right" style="margin-right: 15px">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">${username}<strong class="caret"></strong></a>
+							data-toggle="dropdown">${nickname}<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
 								<li><a
-									href="${pageContext.request.contextPath}/news/news_index.action">首页</a></li>
+									href="${pageContext.request.contextPath}/news/news_list">首页</a></li>
 								<li
 									class="<%="inf".equals(request.getParameter("fun"))
 						? "active"
 						: ""%>"><a
-									href="${pageContext.request.contextPath}/news/user_inf.action">个人中心</a></li>
+									href="${pageContext.request.contextPath}/news/user_inf">个人中心</a></li>
 								<li
 									class="<%="collect".equals(request.getParameter("fun"))
 						? "active"
 						: ""%>"><a
-									href="${pageContext.request.contextPath}/news/user_collect.action?userid=${userid}">我的收藏</a></li>
+									href="${pageContext.request.contextPath}/user/user_collect?userid=${userid}">我的收藏</a></li>
 								<li
 									class="<%="comment".equals(request.getParameter("fun"))
 						? "active"
 						: ""%>"><a
-									href="${pageContext.request.contextPath}/news/user_comment.action?userid=${userid}">我的评论</a></li>
+									href="${pageContext.request.contextPath}/user/user_comment?userid=${userid}">我的评论</a></li>
 								<li class="divider"></li>
 								<li><a
-									href="${pageContext.request.contextPath}/news/userSignout.action">退出登录</a>
+									href="${pageContext.request.contextPath}/user/userSignout.action">退出登录</a>
 								</li>
 							</ul></li>
 					</ul>

@@ -115,22 +115,7 @@ public class UserController {
             response.getWriter().println(JSONObject.toJSONString(mResultBean));
             return;
         }
-        if (DataUtils.isNull(password)||password.length()<6) {
-            mResultBean.setCode(ErrorCode.LOGIN_FORMAT_PASSWORD);
-            mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_FORMAT_PASSWORD));
-            response.getWriter().println(JSONObject.toJSONString(mResultBean));
-            return;
-        }
-        if (!DataUtils.isPhoneNUmber(telephone)) {
-            mResultBean.setCode(ErrorCode.LOGIN_FORMAT_PHONE);
-            mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_FORMAT_PHONE));
-            response.getWriter().println(JSONObject.toJSONString(mResultBean));
-            return;
-        }
-        if (!DataUtils.isNull(email)&&!DataUtils.isEmail(email)) {
-            mResultBean.setCode(ErrorCode.LOGIN_FORMAT_EMAIL);
-            mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_FORMAT_EMAIL));
-            response.getWriter().println(JSONObject.toJSONString(mResultBean));
+        if(!getFormat(mResultBean,nickname,password,email,telephone,response)){
             return;
         }
         User user = new User();
@@ -151,7 +136,7 @@ public class UserController {
             response.getWriter().println(JSONObject.toJSONString(mResultBean));
             return;
         }
-        if (!DataUtils.isNull(email)){
+        if (!DataUtils.isNull(email)) {
             user = new User();
             user.setEmail(email);
             r = userService.findLoginUser(user);
@@ -177,6 +162,10 @@ public class UserController {
         mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.SUCCESS));
         session.setAttribute("username", username);
         session.setAttribute("password", password);
+        mResultBean.setCode(ErrorCode.SUCCESS);
+        mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.SUCCESS));
+        mResultBean.setData(user);
+        response.getWriter().println(JSONObject.toJSONString(mResultBean));
     }
 
     // 注册成功页面
@@ -214,12 +203,41 @@ public class UserController {
 
     // 修改
     @RequestMapping("/user_inf_edit_do")
-    public String user_inf_edit_do(HttpServletRequest request, Integer id,
-                                   String username, String password, Integer sex, String email,
-                                   String telephone) throws Exception {
+    public void user_inf_edit_do(Integer id,
+                                 String nickname, String password, Integer sex, String email,
+                                 String telephone, HttpServletResponse response) throws Exception {
+        User userinf = userService.findUserById(id);
+        ResultBean<User> mResultBean = new ResultBean<User>();
+        response.setContentType("application/json; charset=utf-8");
+       if(!getFormat(mResultBean,nickname,password,email,telephone,response)){
+           return;
+       }
         User user = new User();
+        user.setTelephone(telephone);
+        User r;
+        if (!telephone.equals(userinf.getTelephone())) {
+            r = userService.findLoginUser(user);
+            if (r != null) {
+                mResultBean.setCode(ErrorCode.LOGIN_EXIST_PHONE);
+                mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_EXIST_PHONE));
+                response.getWriter().println(JSONObject.toJSONString(mResultBean));
+                return;
+            }
+        }
+        if (!email.equals(userinf.getEmail()) && !DataUtils.isNull(email)) {
+            user = new User();
+            user.setEmail(email);
+            r = userService.findLoginUser(user);
+            if (r != null) {
+                mResultBean.setCode(ErrorCode.LOGIN_EXIST_EMAIL);
+                mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_EXIST_EMAIL));
+                response.getWriter().println(JSONObject.toJSONString(mResultBean));
+                return;
+            }
+        }
+        user = new User();
         user.setId(id);
-        user.setUsername(username);
+        user.setUsername(nickname);
         user.setPassword(password);
         user.setSex(sex);
         user.setEmail(email);
@@ -227,7 +245,10 @@ public class UserController {
         user.setIdent(0);
         user.setIsdelete(0);
         userService.edit_do(user);
-        return "forward:user_inf";
+        mResultBean.setCode(ErrorCode.SUCCESS);
+        mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.SUCCESS));
+        mResultBean.setData(user);
+        response.getWriter().println(JSONObject.toJSONString(mResultBean));
     }
 
     // 我的收藏
@@ -260,4 +281,32 @@ public class UserController {
         return modelAndView;
     }
 
+    private boolean getFormat(ResultBean mResultBean, String nickname, String password, String email,
+                              String telephone, HttpServletResponse response) throws Exception {
+        if (DataUtils.isNull(nickname) || password.length() < 6) {
+            mResultBean.setCode(ErrorCode.LOGIN_FORMAT_PASSWORD);
+            mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_FORMAT_PASSWORD));
+            response.getWriter().println(JSONObject.toJSONString(mResultBean));
+            return false;
+        }
+        if (DataUtils.isNull(password) || password.length() < 6) {
+            mResultBean.setCode(ErrorCode.LOGIN_FORMAT_PASSWORD);
+            mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_FORMAT_PASSWORD));
+            response.getWriter().println(JSONObject.toJSONString(mResultBean));
+            return false;
+        }
+        if (!DataUtils.isPhoneNUmber(telephone)) {
+            mResultBean.setCode(ErrorCode.LOGIN_FORMAT_PHONE);
+            mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_FORMAT_PHONE));
+            response.getWriter().println(JSONObject.toJSONString(mResultBean));
+            return false;
+        }
+        if (!DataUtils.isNull(email) && !DataUtils.isEmail(email)) {
+            mResultBean.setCode(ErrorCode.LOGIN_FORMAT_EMAIL);
+            mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_FORMAT_EMAIL));
+            response.getWriter().println(JSONObject.toJSONString(mResultBean));
+            return false;
+        }
+        return true;
+    }
 }
