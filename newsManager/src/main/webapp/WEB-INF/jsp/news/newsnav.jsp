@@ -59,20 +59,20 @@
 									class="<%="inf".equals(request.getParameter("fun"))
 						? "active"
 						: ""%>"><a
-									href="${pageContext.request.contextPath}/news/user_inf">个人中心</a></li>
+									href="${pageContext.request.contextPath}/user/user_inf">个人中心</a></li>
 								<li
 									class="<%="collect".equals(request.getParameter("fun"))
 						? "active"
 						: ""%>"><a
-									href="${pageContext.request.contextPath}/news/user_collect?userid=${userid}">我的收藏</a></li>
+									href="${pageContext.request.contextPath}/user/user_collect?userid=${userid}">我的收藏</a></li>
 								<li
 									class="<%="comment".equals(request.getParameter("fun"))
 						? "active"
 						: ""%>"><a
-									href="${pageContext.request.contextPath}/news/user_comment?userid=${userid}">我的评论</a></li>
+									href="${pageContext.request.contextPath}/user/user_comment?userid=${userid}">我的评论</a></li>
 								<li class="divider"></li>
 								<li><a
-									href="${pageContext.request.contextPath}/news/userSignout">退出登录</a>
+									href="${pageContext.request.contextPath}/user/userSignout">退出登录</a>
 								</li>
 							</ul></li>
 					</ul>
@@ -130,7 +130,7 @@
 						aria-hidden="true">×</button>
 					<h4 class="modal-title" id="myModalLabel">注册</h4>
 				</div>
-				<form method="post" action="register">
+				<form method="post" action="${pageContext.request.contextPath}/user/register">
 					<div class="modal-body">
 						<div style="width: 400px; margin-left: 90px">
 							<div class="input-group">
@@ -168,6 +168,21 @@
 								<span class="input-group-addon">电话</span> <input type="text"
 									name="telephone" class="form-control" placeholder="请输入手机号"
 									data-toggle="tooltip" data-placement="right" title="请输入手机号">
+							</div>
+						</div>
+
+						<div style="width: 400px; margin-left: 90px">
+							<div class="input-group" style="margin-top: 20px">
+								<span class="input-group-addon">昵称</span> <input type="text"
+																				 name="nickname" class="form-control" placeholder="请输入手机号"
+																				 data-toggle="tooltip" data-placement="right" title="请输入手机号">
+							</div>
+						</div>
+						<div style="width: 400px; margin-left: 90px">
+							<div class="input-group" style="margin-top: 20px">
+								<span class="input-group-addon">头像</span> <input type="text"
+																				 name="head_image" class="form-control" placeholder="请输入手机号"
+																				 data-toggle="tooltip" data-placement="right" title="请输入手机号">
 							</div>
 						</div>
 					</div>

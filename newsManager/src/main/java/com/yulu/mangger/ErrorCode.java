@@ -52,13 +52,32 @@ public class ErrorCode {
     public static final int UNBINDING_PHONE = 2005; //未绑定手机号
     public static final int OTHER_UNBINDING_PHONE = 2009;  //第三方登录未绑定
 
+    public static final int LOGIN_EXIST_USERNAME = 10001;// username已经存在
+    public static final int LOGIN_EXIST_PHONE = 10002;// 手机号已经存在
+    public static final int LOGIN_NULL_USERNAME = 10003;// username为空
+    public static final int LOGIN_FORMAT_PHONE =  10004;// 手机号格式不正确
+    public static final int LOGIN_FORMAT_EMAIL = 10005; //邮箱格式不正确
+    public static final int LOGIN_EXIST_EMAIL = 10006; //邮箱已经存在
+    public static final int LOGIN_FORMAT_PASSWORD = 10007; //密码格式不正确
     public static String getMsg(int code) {
         switch (code) {
             case SUCCESS:
                 return "请求成功！";
             /*用户注册登录部分*/
-            case SMS_CODE_PHONE_EXISTENCE:
+            case LOGIN_EXIST_USERNAME:
+                return "用户名已存在！";
+            case LOGIN_EXIST_PHONE:
                 return "手机号已存在！";
+            case LOGIN_NULL_USERNAME:
+                return "username为空！";
+            case LOGIN_FORMAT_PHONE:
+                return "手机号格式不正确！";
+            case LOGIN_FORMAT_EMAIL:
+                return "邮箱格式不正确！";
+            case LOGIN_EXIST_EMAIL:
+                return "邮箱已经存在！";
+            case LOGIN_FORMAT_PASSWORD:
+                return "密码格式不正确！";
             case SMS_CODE_PHONE_NOT_NULL:
                 return "手机号不能为空！";
             case SMS_CODE_PHONE_OVER:

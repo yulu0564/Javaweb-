@@ -8,7 +8,7 @@
         <result column="password" property="password" jdbcType="VARCHAR"/>
         <result column="sex" property="sex" jdbcType="INTEGER"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
-        <result column="telephone" property="telephone" jdbcType="INTEGER"/>
+        <result column="telephone" property="telephone" jdbcType="VARCHAR"/>
         <result column="ident" property="ident" jdbcType="INTEGER"/>
         <result column="isdelete" property="isdelete" jdbcType="INTEGER"/>
         <result column="status" property="status" jdbcType="INTEGER"/>
@@ -347,6 +347,20 @@
 		select * from user_inf where username=#{username} and
 		password=#{password}
 	</select>
+
+    <select id="findUser" parameterType="com.yulu.mangger.bean.User"
+            resultType="com.yulu.mangger.bean.User">
+        select * from user_inf where isdelete=0
+        <if test="username!=null">
+            and username = #{username}
+        </if>
+        <if test="email!=null">
+            and email = #{email}
+        </if>
+        <if test="telephone!=null">
+            and telephone = #{telephone}
+        </if>
+    </select>
 
     <select id="banById" parameterType="com.yulu.mangger.bean.User" resultType="com.yulu.mangger.bean.User">
 		update user_inf

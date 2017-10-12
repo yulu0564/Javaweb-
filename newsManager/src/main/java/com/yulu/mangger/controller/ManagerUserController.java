@@ -46,8 +46,7 @@ public class ManagerUserController {
 	}
 
 	// 添加用户
-	@RequestMapping("/add_do")
-//	@RequestMapping(value="/add_do",method= RequestMethod.POST )
+	@RequestMapping(value="/add_do",method= RequestMethod.POST )
 	public String add_do(HttpServletRequest request, String username,
 						 String password, Integer sex, String email, String telephone, String nickname, String head_image)
 			throws Exception {
@@ -56,11 +55,9 @@ public class ManagerUserController {
 		user.setPassword(password);
 		user.setSex(sex);
 		user.setEmail(email);
-		user.setTelephone(Integer.parseInt(telephone));
+		user.setTelephone(telephone);
 		user.setIdent(0);
 		user.setIsdelete(0);
-
-
 		user.setStatus(0);
 		user.setCreateDate(new Date());
 		user.setNickname(nickname);
@@ -87,7 +84,7 @@ public class ManagerUserController {
 	@RequestMapping("/edit_do")
 	public String edit_do(HttpServletRequest request, Integer id,
 			String username, String password, Integer sex, String email,
-			Integer telephone) throws Exception {
+						  String telephone) throws Exception {
 		User user = new User();
 		user.setId(id);
 		user.setUsername(username);

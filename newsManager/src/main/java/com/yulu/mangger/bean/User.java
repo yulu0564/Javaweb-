@@ -14,7 +14,7 @@ public class User implements Serializable {
     private String nickname;    // 昵称
     private String head_image;    // 头像
     private Integer sex;
-    private Integer telephone;
+    private String telephone;
 
     private Integer ident;
     private String email;
@@ -129,11 +129,11 @@ public class User implements Serializable {
         this.ident = ident;
     }
 
-    public Integer getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(Integer telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 }

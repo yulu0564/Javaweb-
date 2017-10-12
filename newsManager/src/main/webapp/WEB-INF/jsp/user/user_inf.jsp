@@ -20,7 +20,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<dl class="dl-horizontal">
-								<dt>昵称</dt>
+								<dt>用户名</dt>
 								<dd>${userinf.username}</dd>
 								<dt>性别</dt>
 								<dd>
@@ -31,6 +31,10 @@
 								<dd>${userinf.email }</dd>
 								<dt>手机号</dt>
 								<dd>${userinf.telephone }</dd>
+
+								<dt>昵称</dt>
+								<dd>${userinf.nickname }</dd>
+
 								<hr>
 								<dd>
 									<a

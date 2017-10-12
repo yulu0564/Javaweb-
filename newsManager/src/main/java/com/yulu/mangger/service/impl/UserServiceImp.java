@@ -62,6 +62,11 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    public User findLoginUser(User user) throws Exception {
+        return usermapper.findUser(user);
+    }
+
+    @Override
     public void ban_do(Integer id) throws Exception {
         User user = new User();
         user.setId(id);
