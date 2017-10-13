@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AuthorizedInterceptor implements HandlerInterceptor {
 
-	/** 定义需要拦截的请求 */
-	private static final String[] IGNORE_URI = {"user/user_inf","user/user_inf_edit"};
+	/** 定义不需要拦截的请求 */
+	private static final String[] IGNORE_URI = {"/loginForm", "/login","/404.html"};
 	
 	 /** 
      * 该方法需要preHandle方法的返回值为true时才会执行。
@@ -44,13 +44,13 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object handler) throws Exception {
 		/** 默认用户没有登录 */
-		boolean flag = true;
+		boolean flag = false;
 		/** 获得请求的ServletPath */
 		String servletPath = request.getServletPath();
 		/**  判断请求是否需要拦截 */
         for (String s : IGNORE_URI) {
             if (servletPath.contains(s)) {
-                flag = false;
+                flag = true;
                 break;
             }
         }
