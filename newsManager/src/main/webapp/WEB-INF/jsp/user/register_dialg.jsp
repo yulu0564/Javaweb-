@@ -94,7 +94,8 @@
                 if(data["code"]==0){
                     window.location.reload();
                 }else{
-
+                    alert(data["msg"]);
+                    $("#modal-container-181251").modal("hide");
                 }
             }
         });

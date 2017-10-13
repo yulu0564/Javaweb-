@@ -59,6 +59,7 @@ public class ErrorCode {
     public static final int LOGIN_FORMAT_EMAIL = 10005; //邮箱格式不正确
     public static final int LOGIN_EXIST_EMAIL = 10006; //邮箱已经存在
     public static final int LOGIN_FORMAT_PASSWORD = 10007; //密码格式不正确
+    public static final int LOGIN_USERNAME_OR_PASSWORD_ERROR = 10008; //用户名或密码错误
     public static String getMsg(int code) {
         switch (code) {
             case SUCCESS:
@@ -78,6 +79,10 @@ public class ErrorCode {
                 return "邮箱已经存在！";
             case LOGIN_FORMAT_PASSWORD:
                 return "密码格式不正确！";
+            case LOGIN_USERNAME_OR_PASSWORD_ERROR:
+                return "用户名或密码错误！";
+
+
             case SMS_CODE_PHONE_NOT_NULL:
                 return "手机号不能为空！";
             case SMS_CODE_PHONE_OVER:

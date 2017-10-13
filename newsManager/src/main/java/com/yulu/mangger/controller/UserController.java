@@ -31,14 +31,6 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    @Qualifier("newsService")
-    private NewsService newsService;
-
-    @Autowired
-    @Qualifier("sortService")
-    private SortService sortService;
-
-    @Autowired
     @Qualifier("commentsService")
     private CommentsService commentsService;
 
@@ -47,7 +39,7 @@ public class UserController {
     private CollectsService collectsService;
 
     // 登录
-    @RequestMapping("/userLogin")
+    @RequestMapping("/userLoginAndView")
     public String userLogin(HttpServletRequest request, HttpSession session,
                             String username, String password) throws Exception {
         User r = userService.findLoginUser(username, password);
@@ -67,22 +59,45 @@ public class UserController {
     }
 
     // 登录
-    @RequestMapping("/userLogin2")
+    @RequestMapping("/userLogin")
     public void userLogin(HttpSession session,
                           String username, String password,
                           HttpServletResponse response) throws Exception {
+        ResultBean<User> mResultBean = new ResultBean<User>();
+        response.setContentType("application/json; charset=utf-8");
+        if (DataUtils.isNull(username)) {
+            mResultBean.setCode(ErrorCode.LOGIN_NULL_USERNAME);
+            mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_NULL_USERNAME));
+            response.getWriter().println(JSONObject.toJSONString(mResultBean));
+            return ;
+        }
+        if (DataUtils.isNull(password) || password.length() < 6) {
+            mResultBean.setCode(ErrorCode.LOGIN_FORMAT_PASSWORD);
+            mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_FORMAT_PASSWORD));
+            response.getWriter().println(JSONObject.toJSONString(mResultBean));
+            return ;
+        }
         User r = userService.findLoginUser(username, password);
         if (r != null) {
             if (r.getIdent() == 0) {
                 session.setAttribute("username", r.getUsername());
                 session.setAttribute("userid", r.getId());
                 session.setAttribute("nickname", r.getNickname());
-                response.getWriter().println(JSONObject.toJSONString(r));
+                mResultBean.setData(r);
+                mResultBean.setCode(ErrorCode.SUCCESS);
+                mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.SUCCESS));
+                response.getWriter().println(JSONObject.toJSONString(mResultBean));
             } else {
-                response.getWriter().println("error");
+                mResultBean.setCode(ErrorCode.LOGIN_USERNAME_OR_PASSWORD_ERROR);
+                mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_USERNAME_OR_PASSWORD_ERROR));
+                response.getWriter().println(JSONObject.toJSONString(mResultBean));
+                return ;
             }
         } else {
-            response.getWriter().println("error");
+            mResultBean.setCode(ErrorCode.LOGIN_USERNAME_OR_PASSWORD_ERROR);
+            mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_USERNAME_OR_PASSWORD_ERROR));
+            response.getWriter().println(JSONObject.toJSONString(mResultBean));
+            return ;
         }
     }
 

@@ -43,18 +43,21 @@
 <script>
 
     function  login(){
-        var AjaxURL= "${pageContext.request.contextPath}/user/userLogin2";
+        var AjaxURL= "${pageContext.request.contextPath}/user/userLogin";
         var dataParam = $("#login").serializeArray();
         $.ajax({
             type:'post',
             data:dataParam,
             url:AjaxURL,
+            dataType: 'json',
             cache:false,
             success:function(data){
-                if(data=="error"){
-                    alert("账号或密码错误");
-                }else{
+                if(data["code"]==0){
+                    alert("登录成功");
                     window.location.reload();
+                }else{
+                    alert(data["msg"]);
+//                    $("#modal-container-181251").modal("hide");
                 }
             }
         });
