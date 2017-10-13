@@ -22,7 +22,7 @@
     <mvc:interceptors>
     	<mvc:interceptor>
     		<!-- 拦截所有请求 -->
-    		<mvc:mapping path="/*"/>
+    		<mvc:mapping path="/**"/>
     		<!-- 自定义判断用户权限的拦截类 -->  
     	 	<bean class="com.yulu.mangger.interceptor.AuthorizedInterceptor"/>
     	</mvc:interceptor>

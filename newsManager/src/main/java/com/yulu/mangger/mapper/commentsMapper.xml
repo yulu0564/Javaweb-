@@ -82,20 +82,6 @@
 	<sql id="Base_Column_List" >
     id, userid, newsid, replyid, contects, time, isdelete
 	</sql>
-	<select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yulu.mangger.bean.CommentsExample" >
-    select
-		<if test="distinct" >
-      distinct
-		</if>
-		<include refid="Base_Column_List" />
-    from comments
-		<if test="_parameter != null" >
-			<include refid="Example_Where_Clause" />
-		</if>
-		<if test="orderByClause != null" >
-      order by ${orderByClause}
-		</if>
-	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
 		<include refid="Base_Column_List" />
@@ -105,12 +91,6 @@
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from comments
     where id = #{id,jdbcType=INTEGER}
-	</delete>
-	<delete id="deleteByExample" parameterType="com.yulu.mangger.bean.CommentsExample" >
-    delete from comments
-		<if test="_parameter != null" >
-			<include refid="Example_Where_Clause" />
-		</if>
 	</delete>
 	<insert id="insert" parameterType="com.yulu.mangger.bean.Comments" >
     insert into comments (id, userid, newsid, 
@@ -169,54 +149,6 @@
 			</if>
 		</trim>
 	</insert>
-	<select id="countByExample" parameterType="com.yulu.mangger.bean.CommentsExample" resultType="java.lang.Integer" >
-    select count(*) from comments
-		<if test="_parameter != null" >
-			<include refid="Example_Where_Clause" />
-		</if>
-	</select>
-	<update id="updateByExampleSelective" parameterType="map" >
-    update comments
-		<set >
-			<if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-			</if>
-			<if test="record.userid != null" >
-        userid = #{record.userid,jdbcType=INTEGER},
-			</if>
-			<if test="record.newsid != null" >
-        newsid = #{record.newsid,jdbcType=INTEGER},
-			</if>
-			<if test="record.replyid != null" >
-        replyid = #{record.replyid,jdbcType=INTEGER},
-			</if>
-			<if test="record.contects != null" >
-        contects = #{record.contects,jdbcType=VARCHAR},
-			</if>
-			<if test="record.time != null" >
-        time = #{record.time,jdbcType=VARCHAR},
-			</if>
-			<if test="record.isdelete != null" >
-        isdelete = #{record.isdelete,jdbcType=VARCHAR},
-			</if>
-		</set>
-		<if test="_parameter != null" >
-			<include refid="Update_By_Example_Where_Clause" />
-		</if>
-	</update>
-	<update id="updateByExample" parameterType="map" >
-    update comments
-    set id = #{record.id,jdbcType=INTEGER},
-      userid = #{record.userid,jdbcType=INTEGER},
-      newsid = #{record.newsid,jdbcType=INTEGER},
-      replyid = #{record.replyid,jdbcType=INTEGER},
-      contects = #{record.contects,jdbcType=VARCHAR},
-      time = #{record.time,jdbcType=VARCHAR},
-      isdelete = #{record.isdelete,jdbcType=VARCHAR}
-		<if test="_parameter != null" >
-			<include refid="Update_By_Example_Where_Clause" />
-		</if>
-	</update>
 	<update id="updateByPrimaryKeySelective" parameterType="com.yulu.mangger.bean.Comments" >
     update comments
 		<set >

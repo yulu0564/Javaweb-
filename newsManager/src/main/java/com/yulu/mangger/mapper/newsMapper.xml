@@ -80,21 +80,6 @@
 	<sql id="Base_Column_List">
 		id, title, sort, contect, fromto, fromuser, time, isdelete, digest
 	</sql>
-	<select id="selectByExample" resultMap="BaseResultMap"
-		parameterType="com.yulu.mangger.bean.NewsExample">
-		select
-		<if test="distinct">
-			distinct
-		</if>
-		<include refid="Base_Column_List" />
-		from news
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
-		<if test="orderByClause != null">
-			order by ${orderByClause}
-		</if>
-	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select
@@ -105,12 +90,6 @@
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from news
 		where id = #{id,jdbcType=INTEGER}
-	</delete>
-	<delete id="deleteByExample" parameterType="com.yulu.mangger.bean.NewsExample">
-		delete from news
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
 	</delete>
 	<insert id="insert" parameterType="com.yulu.mangger.bean.News">
 		insert into news (id, title,
@@ -186,71 +165,6 @@
 			</if>
 		</trim>
 	</insert>
-	<select id="countByExample" parameterType="com.yulu.mangger.bean.NewsExample"
-		resultType="java.lang.Integer">
-		select count(*) from news
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
-	</select>
-	<update id="updateByExampleSelective" parameterType="map">
-		update news
-		<set>
-			<if test="record.id != null">
-				id = #{record.id,jdbcType=INTEGER},
-			</if>
-			<if test="record.title != null">
-				title = #{record.title,jdbcType=VARCHAR},
-			</if>
-			<if test="record.sort != null">
-				sort = #{record.sort,jdbcType=INTEGER},
-			</if>
-			<if test="record.contect != null">
-				contect = #{record.contect,jdbcType=VARCHAR},
-			</if>
-			<if test="record.digest != null">
-				digest = #{record.digest,jdbcType=VARCHAR},
-			</if>
-			<if test="record.fromto != null">
-				fromto = #{record.fromto,jdbcType=VARCHAR},
-			</if>
-			<if test="record.fromuser != null">
-				fromuser = #{record.fromuser,jdbcType=VARCHAR},
-			</if>
-			<if test="record.time != null">
-				time = #{record.time,jdbcType=VARCHAR},
-			</if>
-			<if test="record.isdelete != null">
-				isdelete = #{record.isdelete,jdbcType=INTEGER},
-			</if>
-		</set>
-		<if test="_parameter != null">
-			<include refid="Update_By_Example_Where_Clause" />
-		</if>
-	</update>
-	<update id="updateByExample" parameterType="map">
-		update news
-		set id = #{record.id,jdbcType=INTEGER},
-		title =
-		#{record.title,jdbcType=VARCHAR},
-		sort =
-		#{record.sort,jdbcType=INTEGER},
-		contect =
-		#{record.contect,jdbcType=VARCHAR},
-		digest =
-		#{record.digest,jdbcType=VARCHAR},
-		fromto =
-		#{record.fromto,jdbcType=VARCHAR},
-		fromuser =
-		#{record.fromuser,jdbcType=VARCHAR},
-		time =
-		#{record.time,jdbcType=VARCHAR},
-		isdelete =
-		#{record.isdelete,jdbcType=INTEGER}
-		<if test="_parameter != null">
-			<include refid="Update_By_Example_Where_Clause" />
-		</if>
-	</update>
 	<update id="updateByPrimaryKeySelective" parameterType="com.yulu.mangger.bean.News">
 		update news
 		<set>

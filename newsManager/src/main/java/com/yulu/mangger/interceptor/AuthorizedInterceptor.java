@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AuthorizedInterceptor implements HandlerInterceptor {
 
-	/** 定义不需要拦截的请求 */
-	private static final String[] IGNORE_URI = {"/loginForm", "/login","/404.html"};
+	/** 定义需要拦截的请求 */
+	private static final String[] IGNORE_URI = {"user/user_inf","user/user_inf_edit"};
 	
 	 /** 
      * 该方法需要preHandle方法的返回值为true时才会执行。
@@ -44,30 +44,30 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object handler) throws Exception {
 		/** 默认用户没有登录 */
-		boolean flag = false; 
+		boolean flag = true;
 		/** 获得请求的ServletPath */
 		String servletPath = request.getServletPath();
 		/**  判断请求是否需要拦截 */
         for (String s : IGNORE_URI) {
             if (servletPath.contains(s)) {
-                flag = true;
+                flag = false;
                 break;
             }
         }
         /** 拦截请求 */
-//        if (!flag){
-//        	/** 1.获取session中的用户  */
-//        	User user = (User) request.getSession().getAttribute(HrmConstants.USER_SESSION);
-//        	/** 2.判断用户是否已经登录 */
-//        	if(user == null){
-//        		 /** 如果用户没有登录，跳转到登录页面 */
-//        		request.setAttribute("message", "请先登录再访问网站!");
-//        		request.getRequestDispatcher(HrmConstants.LOGIN).forward(request, response);
-//        		return flag;
-//        	}else{
-//        		 flag = true;
-//        	}
-//        }
+        if (!flag){
+        	/** 1.获取session中的用户  */
+			Integer userid = (Integer) request.getSession().getAttribute("userid");
+        	/** 2.判断用户是否已经登录 */
+        	if(userid == null){
+        		 /** 如果用户没有登录，跳转到登录页面 */
+        		request.setAttribute("message", "请先登录再访问网站!");
+        		request.getRequestDispatcher("/news/news_list").forward(request, response);
+        		return flag;
+        	}else{
+        		 flag = true;
+        	}
+        }
         return flag;
 		
 	}
