@@ -113,7 +113,7 @@ public class UserController {
     @RequestMapping("/userSignout")
     public String userSignout(HttpSession session) throws Exception {
         session.invalidate();
-        return "forward:news/news_index";
+        return "forward:news/news_list";
     }
 
     // 注册

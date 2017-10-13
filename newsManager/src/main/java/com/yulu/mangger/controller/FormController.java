@@ -24,6 +24,11 @@ public class FormController {
 		// 动态跳转页面
 		return formName;
 	}
+	@RequestMapping(value="")
+	public String loginForm(){
+		// 动态跳转页面
+		return "forward:news/news_list";
+	}
 
 }
 
