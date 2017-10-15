@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthorizedInterceptor implements HandlerInterceptor {
 
 	/** 定义不需要拦截的请求 */
-	private static final String[] IGNORE_URI = {"/loginForm", "/login","/404.html"};
+	private static final String[] IGNORE_URI = {"/user/userLogin", "/user/register","/404.html"};
 	
 	 /** 
      * 该方法需要preHandle方法的返回值为true时才会执行。
