@@ -1,6 +1,5 @@
 package com.yulu.mangger.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.yulu.mangger.bean.*;
 import com.yulu.mangger.service.CollectsService;
 import com.yulu.mangger.service.CommentsService;
@@ -11,13 +10,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Controller

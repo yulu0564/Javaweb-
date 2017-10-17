@@ -93,7 +93,7 @@
 <script>
     function collect(obj) {
         if ("${newsinf.id}" != "") {
-            var AjaxURL = "${pageContext.request.contextPath}/collect/collect2?newsid=${newsinf.id}&userid=${userid}";
+            var AjaxURL = "${pageContext.request.contextPath}/collect/collect?newsid=${newsinf.id}";
             var objFu = $(obj).parent();
             $.ajax({
                 type: 'get',

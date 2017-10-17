@@ -6,6 +6,6 @@
 <body>
 	注册成功！
 	<a
-		href="${pageContext.request.contextPath}/user/userLogin.action?username=${username}&&password=${password}">立即登录！</a>
+		href="${pageContext.request.contextPath}/user/userLogin?username=${username}&&password=${password}">立即登录！</a>
 </body>
 </html>
