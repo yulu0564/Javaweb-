@@ -36,10 +36,7 @@ public class CollectsServiceImp implements CollectsService {
 	}
 
 	@Override
-	public Collects findCollects(Integer newsid, Integer userid) throws Exception {
-		Collects mCollects = new Collects();
-		mCollects.setNewsid(newsid);
-		mCollects.setUserid(userid);
+	public Collects findCollects(Collects mCollects ) throws Exception {
 		return collectsMapper.findCollects(mCollects);
 	}
 

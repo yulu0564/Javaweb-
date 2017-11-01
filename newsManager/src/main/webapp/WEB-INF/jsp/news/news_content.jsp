@@ -1,14 +1,14 @@
 <%@page pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="container-fluid">
+<div class="container-fluid"  style="margin: 0 auto">
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="row">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-8">
+                    <div class="row"  style="width: 100%">
+                        <div class="col-md-8"  style="margin: 0 auto">
                             <h2>${newsinf.title }</h2>
                             <div>
                                 <c:if test="${collects==null}">

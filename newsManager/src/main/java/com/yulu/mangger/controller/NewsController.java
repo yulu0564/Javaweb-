@@ -108,7 +108,10 @@ public class NewsController {
 		modelAndView.addObject("newsinf", newsinf);
 		Integer userid = (Integer) session.getAttribute("userid");
 		if(userid!=null) {
-			Collects collects = collectsService.findCollects(detail, userid);
+			Collects mCollects = new Collects();
+			mCollects.setNewsid(detail);
+			mCollects.setUserid(userid);
+			Collects collects = collectsService.findCollects(mCollects);
 			modelAndView.addObject("collects", collects);
 		}
 		// 返回到jsp显示

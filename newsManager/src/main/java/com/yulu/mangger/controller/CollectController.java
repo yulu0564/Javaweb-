@@ -30,7 +30,10 @@ public class CollectController {
 		ResultBean<Collects> mResultBean = new ResultBean<Collects>();
 		response.setContentType("application/json; charset=utf-8");
 		if(userid!=null) {
-			Collects collectsOld = collectsService.findCollects(newsid, userid);
+			Collects mCollects = new Collects();
+			mCollects.setNewsid(newsid);
+			mCollects.setUserid(userid);
+			Collects collectsOld = collectsService.findCollects(mCollects);
 			if (collectsOld != null) {
 				mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.COLLECT_SAVE_ALREADY));
 				mResultBean.setCode(ErrorCode.COLLECT_SAVE_ALREADY);
@@ -56,7 +59,10 @@ public class CollectController {
 	public void isCollect(Integer newsid, Integer userid,
 						  HttpServletResponse response) throws Exception {
 		ResultBean<Collects> mResultBean = new ResultBean<Collects>();
-		Collects collectsOld = collectsService.findCollects(newsid,userid);
+		Collects mCollects = new Collects();
+		mCollects.setNewsid(newsid);
+		mCollects.setUserid(userid);
+		Collects collectsOld = collectsService.findCollects(mCollects);
 		if (collectsOld != null) {
 			mResultBean.setMsg("已经保存");
 			mResultBean.setCode(0);
@@ -77,7 +83,11 @@ public class CollectController {
 
 		Integer userid = (Integer) session.getAttribute("userid");
 		if(userid!=null) {
-			Collects collectsOld = collectsService.findCollects(id, userid);
+
+			Collects mCollects = new Collects();
+			mCollects.setId(id);
+			mCollects.setUserid(userid);
+			Collects collectsOld = collectsService.findCollects(mCollects);
 			if (collectsOld != null) {
 				collectsService.delete_do(id);
 				mResultBean.setMsg("取消收藏成功");
