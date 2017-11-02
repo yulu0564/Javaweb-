@@ -1,5 +1,6 @@
 package com.yulu.mangger.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.yulu.mangger.bean.*;
 import com.yulu.mangger.service.CollectsService;
 import com.yulu.mangger.service.CommentsService;
@@ -101,7 +102,7 @@ public class NewsController {
 		Comments comments = new Comments();
 		comments.setNewsid(detail);
 		List<Comments> commentslist = commentsService
-				.findCommentsList(comments);
+				.findCommentsList(comments,1,2);
 
 		modelAndView.addObject("commentslist", commentslist);
 		modelAndView.addObject("sortlist", sortlist);
@@ -115,7 +116,7 @@ public class NewsController {
 			modelAndView.addObject("collects", collects);
 		}
 		// 返回到jsp显示
-		modelAndView.setViewName("news/news_inf");
+		modelAndView.setViewName("news/news_content1");
 		return modelAndView;
 	}
 
@@ -130,7 +131,7 @@ public class NewsController {
 		Comments comments = new Comments();
 		comments.setNewsid(detail);
 		List<Comments> commentslist = commentsService
-				.findCommentsList(comments);
+				.findCommentsList(comments,1,2);
 
 		modelAndView.addObject("commentslist", commentslist);
 		modelAndView.addObject("sortlist", sortlist);

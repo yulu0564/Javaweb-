@@ -1,14 +1,14 @@
 <%@page pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="container-fluid"  style="margin: 0 auto">
+<div class="container-fluid" style="margin: 0 auto">
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="row">
                 <div class="container-fluid">
-                    <div class="row"  style="width: 100%">
-                        <div class="col-md-8"  style="margin: 0 auto">
+                    <div class="row" style="width: 100%">
+                        <div class="col-md-8" style="margin: 0 auto">
                             <h2>${newsinf.title }</h2>
                             <div>
                                 <c:if test="${collects==null}">
@@ -49,8 +49,9 @@
                                             alt="暂无头像"
                                             src="${pageContext.request.contextPath}/res/images/head.jpg"
                                             class="media-object" style="height: 30px"/></a>
-                                    <div class="media-body" >
-                                        <h4 style="margin-left: 30px"class="media-heading">${commentslist.user.username}</h4>
+                                    <div class="media-body">
+                                        <h4 style="margin-left: 30px"
+                                            class="media-heading">${commentslist.user.username}</h4>
                                             ${commentslist.contects}
                                         <p style="position: absolute; right: 10px">
                                             <small><cite>--${commentslist.time}</cite></small>
@@ -135,6 +136,7 @@
             }
         });
     }
+
     function add_comments() {
         var obj = $("#commentslist_id");
         var AjaxURL = "${pageContext.request.contextPath}/comment/add_comments";
@@ -143,26 +145,26 @@
             type: 'post',
             url: AjaxURL,
             cache: false,
-            data:dataParam,
+            data: dataParam,
             dataType: 'json',
             success: function (data) {
                 if (data["code"] == 0) {
                     alert(data["msg"]);
                     var comment = data["data"];
-                    var appendValue ="<div style=\"margin-top: 30px\">\n" +
+                    var appendValue = "<div style=\"margin-top: 30px\">\n" +
                         "                                    <a href=\"#\" class=\"pull-left\"><img\n" +
                         "                                            alt=\"暂无头像\"\n" +
                         "                                            src=\"${pageContext.request.contextPath}/res/images/head.jpg\"\n" +
                         "                                            class=\"media-object\" style=\"height: 30px\"/></a>\n" +
                         "                                    <div class=\"media-body\" >\n" +
                         "                                        <h4 style=\"margin-left: 30px\"class=\"media-heading\">";
-                    appendValue+=comment["user"]["username"];
-                    appendValue+="</h4>";
-                    appendValue+=comment["contects"];
-                    appendValue+=" <p style=\"position: absolute; right: 10px\">\n" +
+                    appendValue += comment["user"]["username"];
+                    appendValue += "</h4>";
+                    appendValue += comment["contects"];
+                    appendValue += " <p style=\"position: absolute; right: 10px\">\n" +
                         "                                            <small><cite>--";
-                    appendValue+=comment["time"];
-                    appendValue+="</cite></small>\n" +
+                    appendValue += comment["time"];
+                    appendValue += "</cite></small>\n" +
                         "                                        </p>\n" +
                         "                                    </div>\n" +
                         "                                    <div style=\"width:800px; border:1px solid black;\"></div>\n" +

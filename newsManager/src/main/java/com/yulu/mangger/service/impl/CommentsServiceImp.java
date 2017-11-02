@@ -1,5 +1,6 @@
 package com.yulu.mangger.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.yulu.mangger.bean.Comments;
 import com.yulu.mangger.dao.CommentsMapper;
 import com.yulu.mangger.service.CommentsService;
@@ -18,8 +19,9 @@ public class CommentsServiceImp implements CommentsService {
 	private CommentsMapper commentsMapper;
 
 	@Override
-	public List<Comments> findCommentsList(Comments comments) throws Exception {
+	public List<Comments> findCommentsList(Comments comments,int pageNum, int rows) throws Exception {
 		// TODO Auto-generated method stub
+		PageHelper.startPage(pageNum, rows);
 		return commentsMapper.findCommentsList(comments);
 	}
 

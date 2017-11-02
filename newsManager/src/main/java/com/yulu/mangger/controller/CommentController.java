@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,11 +52,12 @@ public class CommentController {
 	}
 	// 获取评论列表
 	@RequestMapping("/comments_list")
-	public void comments_list(String newsid,HttpServletResponse response) throws Exception {
+	public void comments_list(String newsid,HttpServletResponse response,@RequestParam(required = false, defaultValue = "1") int page,
+	@RequestParam(required = false, defaultValue = "10") int rows) throws Exception {
 		Comments comments = new Comments();
 		comments.setNewsid(DataUtils.parseInt(newsid));
 		List<Comments> commentslist = commentsService
-				.findCommentsList(comments);
+				.findCommentsList(comments,page,rows);
 		ResultBean<List<Comments>> mResultBean = new ResultBean<List<Comments>>();
 		response.setContentType("application/json; charset=utf-8");
 		mResultBean.setMsg("评论列表");

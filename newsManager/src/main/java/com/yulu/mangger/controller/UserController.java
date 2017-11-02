@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -284,13 +285,14 @@ public class UserController {
 
     // 我的评论
     @RequestMapping("/user_comment")
-    public ModelAndView user_comment(HttpServletRequest request, Integer userid)
+    public ModelAndView user_comment(HttpServletRequest request, Integer userid,@RequestParam(required = false, defaultValue = "1") int page,
+                                     @RequestParam(required = false, defaultValue = "10" ) int rows)
             throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         Comments comments = new Comments();
         comments.setUserid(userid);
         List<Comments> commentslist = commentsService
-                .findCommentsList(comments);
+                .findCommentsList(comments,page,rows);
 
         modelAndView.addObject("commentslist", commentslist);
         modelAndView.setViewName("user/user_comment");
