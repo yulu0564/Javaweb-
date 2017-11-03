@@ -188,14 +188,17 @@
 	</update>
     <select id="findCommentsList" parameterType="com.yulu.mangger.bean.Comments"
             resultMap="BaseResultMap">
-        select c.* ,u.*<if test="newsid!=null">,n.*</if>from comments c,user_inf u <if test="newsid!=null">,news n</if> where c.isdelete=0
+        select c.* ,u.*,n.*from comments c,user_inf u ,news n where c.isdelete=0
         <if test="contects!=null">
             and c.contects = '%${contects}%'
         </if>
         <if test="newsid!=null">
             and c.newsid = '${newsid}'
-            and c.newsid = n.id
         </if>
+        <if test="userid!=null">
+            and c.userid = '${userid}'
+        </if>
+        and c.newsid = n.id
         and c.userid = u.id
         order by c.time desc , c.id desc
     </select>

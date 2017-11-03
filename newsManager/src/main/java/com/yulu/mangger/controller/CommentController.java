@@ -1,20 +1,22 @@
 package com.yulu.mangger.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.yulu.mangger.bean.Collects;
-import com.yulu.mangger.bean.Comments;
-import com.yulu.mangger.bean.ResultBean;
+import com.github.pagehelper.PageInfo;
+import com.yulu.mangger.bean.*;
 import com.yulu.mangger.service.CommentsService;
 import com.yulu.util.DataUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -50,12 +52,42 @@ public class CommentController {
 		mResultBean.setData(comments);
 		response.getWriter().println(JSONObject.toJSONString(mResultBean));
 	}
-	// 获取评论列表
+
 	@RequestMapping("/comments_list")
-	public void comments_list(String newsid,HttpServletResponse response,@RequestParam(required = false, defaultValue = "1") int page,
+	public ModelAndView comments_list(HttpSession session, String newsid, String userid,@RequestParam(required = false, defaultValue = "1") int page,
+									  @RequestParam(required = false, defaultValue = "10" ) int rows)
+			throws Exception {
+		// 创建返回的对象modeAndView
+		ModelAndView modelAndView = new ModelAndView();
+		Comments comments = new Comments();
+		if(!DataUtils.isNull(newsid)) {
+			comments.setNewsid(DataUtils.parseInt(newsid));
+		}
+		if(!DataUtils.isNull(userid)) {
+			comments.setUserid(DataUtils.parseInt(userid));
+		}
+		List<Comments> commentslist = commentsService
+				.findCommentsList(comments,1,2);
+		PageInfo<Comments> p=new PageInfo<Comments>(commentslist);
+		modelAndView.addObject("commentslist", commentslist);
+		modelAndView.addObject("pageNum", p.getPageNum());
+		// 返回到jsp显示
+//		modelAndView.setViewName("comment/comments_list");
+		modelAndView.setViewName("user/user_comment");
+		return modelAndView;
+	}
+
+	// 获取评论列表
+	@RequestMapping("/comments_list_interface")
+	public void comments_list_interface(String newsid, String userid,HttpServletResponse response,@RequestParam(required = false, defaultValue = "1") int page,
 	@RequestParam(required = false, defaultValue = "10") int rows) throws Exception {
 		Comments comments = new Comments();
-		comments.setNewsid(DataUtils.parseInt(newsid));
+		if(!DataUtils.isNull(newsid)) {
+			comments.setNewsid(DataUtils.parseInt(newsid));
+		}
+		if(!DataUtils.isNull(userid)) {
+			comments.setUserid(DataUtils.parseInt(userid));
+		}
 		List<Comments> commentslist = commentsService
 				.findCommentsList(comments,page,rows);
 		ResultBean<List<Comments>> mResultBean = new ResultBean<List<Comments>>();

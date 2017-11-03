@@ -195,7 +195,7 @@ public class UserController {
 
     // 个人中心
     @RequestMapping("/user_inf")
-    public ModelAndView user_inf(HttpSession session) throws Exception {
+    public ModelAndView user_inf(HttpSession session,HttpServletRequest request) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         Integer id = (Integer) session.getAttribute("userid");
         User userinf = userService.findUserById(id);
@@ -206,9 +206,10 @@ public class UserController {
 
     // 修改用户页面
     @RequestMapping("/user_inf_edit")
-    public ModelAndView user_inf_edit(Integer id) throws Exception {
+    public ModelAndView user_inf_edit(HttpSession session,HttpServletRequest request) throws Exception {
         // 创建返回的对象modeAndView
         ModelAndView modelAndView = new ModelAndView();
+        Integer id = (Integer) session.getAttribute("userid");
         // 将参数传入Service层进行处理
         User userinf = userService.findUserById(id);
         // 将处理的结果封装到ModelAndViews
@@ -220,9 +221,10 @@ public class UserController {
 
     // 修改
     @RequestMapping("/user_inf_edit_do")
-    public void user_inf_edit_do(Integer id,
+    public void user_inf_edit_do(HttpSession session,
                                  String nickname, String password, Integer sex, String email,
                                  String telephone, HttpServletResponse response) throws Exception {
+        Integer id = (Integer) session.getAttribute("userid");
         User userinf = userService.findUserById(id);
         ResultBean<User> mResultBean = new ResultBean<User>();
         response.setContentType("application/json; charset=utf-8");
@@ -270,8 +272,9 @@ public class UserController {
 
     // 我的收藏
     @RequestMapping("/user_collect")
-    public ModelAndView user_collect(HttpServletRequest request, Integer userid)
+    public ModelAndView user_collect(HttpSession session,HttpServletRequest request)
             throws Exception {
+        Integer userid = (Integer) session.getAttribute("userid");
         ModelAndView modelAndView = new ModelAndView();
         Collects collects = new Collects();
         collects.setUserid(userid);
@@ -285,9 +288,10 @@ public class UserController {
 
     // 我的评论
     @RequestMapping("/user_comment")
-    public ModelAndView user_comment(HttpServletRequest request, Integer userid,@RequestParam(required = false, defaultValue = "1") int page,
+    public ModelAndView user_comment(HttpSession session,@RequestParam(required = false, defaultValue = "1") int page,
                                      @RequestParam(required = false, defaultValue = "10" ) int rows)
             throws Exception {
+        Integer userid = (Integer) session.getAttribute("userid");
         ModelAndView modelAndView = new ModelAndView();
         Comments comments = new Comments();
         comments.setUserid(userid);
