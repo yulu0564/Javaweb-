@@ -210,3 +210,14 @@ ul {
     display: inline-block;
     margin-left: 12px;
 }
+
+.comment-moreBtn {
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #f0f0f0;
+    color: #adadad;
+    font-size: 14px;
+}

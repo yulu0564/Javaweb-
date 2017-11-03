@@ -5,7 +5,7 @@
     <jsp:include page="../newshead.jsp">
         <jsp:param value="新闻-详情" name="title"/>
     </jsp:include>
-    <link href="${pageContext.request.contextPath}/res/css/news_details.css"
+    <link href="${pageContext.request.contextPath}/res/css/news_details.css?v=20161231204509"
           rel="stylesheet" type="text/css">
 </head>
 <body style=" margin:0">
@@ -84,7 +84,7 @@
                         <span class="a_ilike">
                             <a href="javascript:void(0)" class="collect"><img src="img/star_good.png"
                                                                               style="height: 15px;margin: 5px 5px 5px 0;float: left"/>收藏</a>
-                            <a href="javascript:void(0)" class="comment"><em>5</em>评论</a>
+                            <a href="javascript:void(0)" class="comment"><em>${total}</em>评论</a>
                      </span>
                     </div>
                     <div style="margin-top: 30px">
@@ -119,6 +119,9 @@
                                     </div>
                                 </div>
                             </c:forEach>
+                        </c:if>
+                        <c:if test="${total>2}">
+                        <div class="comment-moreBtn">查看更多评论</div>
                         </c:if>
                     </div>
                 </div>

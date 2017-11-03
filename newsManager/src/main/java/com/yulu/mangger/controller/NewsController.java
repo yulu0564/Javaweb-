@@ -1,6 +1,9 @@
 package com.yulu.mangger.controller;
 
-import com.github.pagehelper.PageHelper;
+import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageInfo;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import com.yulu.mangger.bean.*;
 import com.yulu.mangger.service.CollectsService;
 import com.yulu.mangger.service.CommentsService;
@@ -37,6 +40,8 @@ public class NewsController {
 	@Autowired
 	@Qualifier("collectsService")
 	private CollectsService collectsService;
+
+	private static final Log logger = LogFactory.getLog(NewsController.class);
 
 	@RequestMapping("/news_index")
 	public ModelAndView newslist(HttpServletRequest request, String serach)
@@ -103,10 +108,11 @@ public class NewsController {
 		comments.setNewsid(detail);
 		List<Comments> commentslist = commentsService
 				.findCommentsList(comments,1,2);
-
+		PageInfo<Comments> p=new PageInfo<Comments>(commentslist);
 		modelAndView.addObject("commentslist", commentslist);
 		modelAndView.addObject("sortlist", sortlist);
 		modelAndView.addObject("newsinf", newsinf);
+		modelAndView.addObject("total", p.getTotal());
 		Integer userid = (Integer) session.getAttribute("userid");
 		if(userid!=null) {
 			Collects mCollects = new Collects();
