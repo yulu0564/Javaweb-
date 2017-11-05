@@ -1,5 +1,6 @@
 package com.yulu.mangger.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.yulu.mangger.bean.News;
 import com.yulu.mangger.dao.NewsMapper;
 import com.yulu.mangger.service.NewsService;
@@ -21,6 +22,7 @@ public class NewsServiceImp implements NewsService {
 	@Override
 	public List<News> findNewsList(News news) throws Exception {
 		// TODO Auto-generated method stub
+		PageHelper.startPage(1, 2);
 		return newsMapper.findNewsList(news);
 	}
 
