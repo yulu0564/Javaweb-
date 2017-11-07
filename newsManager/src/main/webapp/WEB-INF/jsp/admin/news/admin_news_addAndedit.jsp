@@ -31,10 +31,11 @@
                     <h3 class="panel-title">新闻信息</h3>
                 </div>
                 <div class="row panel-body">
+                    <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <form id="myform">
                             <input name="id" type="hidden" value="${newsinf.id}">
-                            <div style="width: 100%; margin-left: 100px">
+                            <div style="width: 100%;">
                                 <div class="input-group">
                                     <span class="input-group-addon">标题</span> <input type="text"
                                                                                      maxlength="20" name="title"
@@ -43,7 +44,7 @@
                                                                                      placeholder="请输入新闻标题" required>
                                 </div>
                             </div>
-                            <div style="width: 100%; margin-left: 100px">
+                            <div style="width: 100%;">
                                 <div class="input-group" style="margin-top: 30px">
                                     <span class="input-group-addon">分类</span> <select
                                         class="form-control" name="sort">
@@ -61,7 +62,7 @@
                                 </div>
                             </div>
 
-                            <div style="width: 100%; margin-left: 100px">
+                            <div style="width: 100%;">
                                 <div class="input-group" style="margin-top: 30px">
                                     <span class="input-group-addon">来源</span> <input type="text"
                                                                                      maxlength="50" name="fromto"
@@ -71,7 +72,7 @@
 
                                 </div>
                             </div>
-                            <div style="width: 100%; margin-left: 100px">
+                            <div style="width: 100%;">
                                 <div class="input-group" style="margin-top: 30px">
                                     <span class="input-group-addon">摘要</span>
                                     <textarea maxlength="300" rows="10" name="digest"
@@ -79,26 +80,29 @@
                                 </div>
                             </div>
 
-                            <div style="width: 100%; margin-left: 100px">
-                                <div class="input-group" style="margin-top: 30px">
-                                    <span class="input-group-addon">内容</span>
-                                    <%--<textarea maxlength="500" rows="10" name="contect"--%>
-                                    <%--class="form-control" placeholder="请输入内容">${newsinf.contect }</textarea>--%>
-                                    <script id="editor" type="text/plain"
-                                            style="height:300px;width: 100%"></script>
-                                </div>
-                            </div>
-
                         </form>
-                        <button class="btn btn-success"
-                                style="width: 400px; margin-top: 30px; margin-left: 230px"
-                                onclick="addDo(${newsinf.id})">提交
-                        </button>
-                        <button class="btn btn-default"
-                                style="width: 400px; margin-top: 20px; margin-left: 230px"
-                                onClick="javascript :history.back(-1);">返回
-                        </button>
                     </div>
+                    <div class="col-md-5" style="margin-left: 15px">
+                        <div style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon">内容</span>
+                                <%--<textarea maxlength="500" rows="10" name="contect"--%>
+                                <%--class="form-control" placeholder="请输入内容">${newsinf.contect }</textarea>--%>
+                                <script id="editor" type="text/plain"
+                                        style="height:300px;width: 100%"></script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="horizontal-grabber">
+                    <button class="btn btn-success"
+                            style="width: 400px; margin-top: 30px; margin-left: 230px"
+                            onclick="addDo(${newsinf.id})">提交
+                    </button>
+                    <button class="btn btn-default"
+                            style="width: 400px; margin-top: 20px; margin-left: 230px"
+                            onClick="javascript :history.back(-1);">返回
+                    </button>
                 </div>
             </div>
         </div>
