@@ -5,6 +5,7 @@ import com.yulu.mangger.bean.News;
 import com.yulu.mangger.bean.Sort;
 import com.yulu.mangger.service.NewsService;
 import com.yulu.mangger.service.SortService;
+import com.yulu.util.DataUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -34,14 +35,14 @@ public class ManagerNewsController {
 
 	@RequestMapping("/newslist")
 	public ModelAndView newslist(HttpServletRequest request, String serach,
-			Integer sort) throws Exception {
+								 String sort) throws Exception {
 		// 创建返回的对象modeAndView
 		ModelAndView modelAndView = new ModelAndView();
 		// 将参数传入Service层进行处理
 		News news = new News();
 		news.setTitle(serach);
-		if(sort!=0) {
-			news.setSort(sort);
+		if(sort!=null) {
+			news.setSort(DataUtils.parseInt(sort));
 		}
 		List<News> newslist = newsService.findNewsList(news);
 		List<Sort> sortlist = sortService.findSortList(null);
@@ -65,7 +66,7 @@ public class ManagerNewsController {
 	// 添加新闻
 	@RequestMapping(value = "/add_do",method=RequestMethod.POST)
 	public String add_do( String title,String digest,
-			String contect, String fromto, Integer sort, Integer isdelete,Model model)
+			String contect, String fromto, String sort,Model model)
 			throws Exception {
 		Date date = new Date();
 		SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -76,7 +77,7 @@ public class ManagerNewsController {
 		news.setContect(contect);
 		news.setFromto(fromto);
 		news.setFromuser("admin");
-		news.setSort(sort);
+		news.setSort(DataUtils.parseInt(sort));
 		news.setTime(nowtime);
 		news.setIsdelete(0);
 		newsService.add_do(news);
