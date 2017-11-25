@@ -1,6 +1,5 @@
 package com.yulu.mangger.controller;
 
-import com.github.pagehelper.PageHelper;
 import com.yulu.mangger.bean.News;
 import com.yulu.mangger.bean.Sort;
 import com.yulu.mangger.service.NewsService;
@@ -33,25 +32,7 @@ public class ManagerNewsController {
 	@Qualifier("sortService")
 	private SortService sortService;
 
-	@RequestMapping("/newslist")
-	public ModelAndView newslist(HttpServletRequest request, String serach,
-								 String sort) throws Exception {
-		// 创建返回的对象modeAndView
-		ModelAndView modelAndView = new ModelAndView();
-		// 将参数传入Service层进行处理
-		News news = new News();
-		news.setTitle(serach);
-		if(sort!=null) {
-			news.setSort(DataUtils.parseInt(sort));
-		}
-		List<News> newslist = newsService.findNewsList(news);
-		List<Sort> sortlist = sortService.findSortList(null);
-		modelAndView.addObject("sortlist", sortlist);
-		modelAndView.addObject("newslist", newslist);
-		// 返回到jsp显示
-		modelAndView.setViewName("admin/news/admin_news_list");
-		return modelAndView;
-	}
+
 
 	// 显示添加新闻界面
 	@RequestMapping("/add")

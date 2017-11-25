@@ -83,12 +83,12 @@
 											<td>${news.fromuser }</td>
 											<td>${news.time }</td>
 											<td><a
-												href="${pageContext.request.contextPath}/admin/news/edit.action?id=${news.id}">
+												href="${pageContext.request.contextPath}/admin/news/edit?id=${news.id}">
 													<button class="btn btn-primary btn-sm" type="button">
 														<span class="glyphicon glyphicon-edit"></span>
 													</button>
 											</a> <a
-												href="${pageContext.request.contextPath}/admin/news/delete.action?id=${news.id}">
+												href="${pageContext.request.contextPath}/admin/news/delete?id=${news.id}">
 													<button class="btn btn-danger btn-sm" type="button">
 														<span class="glyphicon glyphicon-trash"></span>
 													</button>

@@ -62,7 +62,7 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
         	if(userid == null){
         		 /** 如果用户没有登录，跳转到登录页面 */
         		request.setAttribute("message", "请先登录再访问网站!");
-        		request.getRequestDispatcher("/news/news_list").forward(request, response);
+        		request.getRequestDispatcher("/news/index").forward(request, response);
         		return flag;
         	}else{
         		 flag = true;

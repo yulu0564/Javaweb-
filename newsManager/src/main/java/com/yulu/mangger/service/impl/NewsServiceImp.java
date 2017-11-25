@@ -20,9 +20,9 @@ public class NewsServiceImp implements NewsService {
 	private NewsMapper newsMapper;
 
 	@Override
-	public List<News> findNewsList(News news) throws Exception {
+	public List<News> findNewsList(News news, int pageNum, int pageSize) throws Exception {
 		// TODO Auto-generated method stub
-		PageHelper.startPage(1, 2);
+		PageHelper.startPage(pageNum, pageSize);
 		return newsMapper.findNewsList(news);
 	}
 

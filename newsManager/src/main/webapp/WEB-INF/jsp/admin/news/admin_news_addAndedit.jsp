@@ -23,7 +23,6 @@
             <%--var value ='${newsinf.contect}';--%>
             ue.ready(function () {//编辑器初始化完成再赋值
                 ue.setContent($('#contect_hid').html(), false);
-
             });
         });
 

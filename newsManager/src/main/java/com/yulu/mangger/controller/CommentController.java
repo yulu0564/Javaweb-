@@ -2,6 +2,7 @@ package com.yulu.mangger.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.yulu.mangger.ErrorCode;
 import com.yulu.mangger.bean.*;
 import com.yulu.mangger.service.CommentsService;
 import com.yulu.util.DataUtils;
@@ -75,7 +76,7 @@ public class CommentController {
 
     // 获取评论列表
     @RequestMapping("/comments_list_interface")
-    public void comments_list_interface(String newsid, String userid, HttpServletResponse response, @RequestParam(required = false, defaultValue = "1") int page,
+    public  void comments_list_interface(String newsid, String userid, HttpServletResponse response, @RequestParam(required = false, defaultValue = "1") int page,
                                         @RequestParam(required = false, defaultValue = "10") int rows) throws Exception {
         Comments comments = new Comments();
         if (!DataUtils.isNull(newsid)) {
@@ -89,7 +90,7 @@ public class CommentController {
         ResultBean<List<Comments>> mResultBean = new ResultBean<List<Comments>>();
         response.setContentType("application/json; charset=utf-8");
         mResultBean.setMsg("评论列表");
-        mResultBean.setCode(0);
+        mResultBean.setCode(ErrorCode.SUCCESS);
         mResultBean.setData(commentslist);
         response.getWriter().println(JSONObject.toJSONString(mResultBean));
     }

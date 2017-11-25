@@ -6,7 +6,7 @@ import com.yulu.mangger.bean.News;
 import java.util.List;
 
 public interface NewsService {
-	public List<News> findNewsList(News news) throws Exception;
+	public List<News> findNewsList(News news,int pageNum, int pageSize) throws Exception;
 
 	public List<News> findhotNewsList(News news) throws Exception;
 
