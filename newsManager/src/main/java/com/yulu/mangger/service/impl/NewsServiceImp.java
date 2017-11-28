@@ -21,62 +21,52 @@ public class NewsServiceImp implements NewsService {
 
 	@Override
 	public List<News> findNewsList(News news, int pageNum, int pageSize) throws Exception {
-		// TODO Auto-generated method stub
 		PageHelper.startPage(pageNum, pageSize);
 		return newsMapper.findNewsList(news);
 	}
 
 	@Override
 	public List<News> findhotNewsList(News news) throws Exception {
-		// TODO Auto-generated method stub
 		return newsMapper.findhotNewsList(news);
 	}
 
 	@Override
 	public List<News> findhot7NewsList(News news) throws Exception {
-		// TODO Auto-generated method stub
 		return newsMapper.findhot7NewsList(news);
 	}
 
 	@Override
 	public List<News> findhot30NewsList(News news) throws Exception {
-		// TODO Auto-generated method stub
 		return newsMapper.findhot30NewsList(news);
 	}
 
 	@Override
 	public List<News> findSort2NewsList(News news) throws Exception {
-		// TODO Auto-generated method stub
 		return newsMapper.findSort2NewsList(news);
 	}
 
 	@Override
 	public List<News> findSort7NewsList(News news) throws Exception {
-		// TODO Auto-generated method stub
 		return newsMapper.findSort7NewsList(news);
 	}
 
 	@Override
 	public News findNewsById(Integer id) throws Exception {
-		// TODO Auto-generated method stub
 		return newsMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
 	public void edit_do(News news) throws Exception {
-		// TODO Auto-generated method stub
 		newsMapper.updateByPrimaryKeySelective(news);
 	}
 
 	@Override
 	public void delete_do(Integer id) throws Exception {
-		// TODO Auto-generated method stub
 		newsMapper.deleteByPrimaryKey(id);
 	}
 
 	@Override
 	public void add_do(News news) throws Exception {
-		// TODO Auto-generated method stub
 		newsMapper.insertSelective(news);
 	}
 

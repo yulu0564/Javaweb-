@@ -14,53 +14,48 @@ import java.util.List;
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT)
 @Service("sortService")
 public class SortServiceImp implements SortService {
-	// 注入User
-	@Resource
-	private SortMapper sortmapper;
+    // 注入User
+    @Resource
+    private SortMapper sortmapper;
 
-	@Override
-	public List<Sort> findSortList(Sort sort) throws Exception {
-		// TODO Auto-generated method stub
-		return sortmapper.findSortList(sort);
-	}
+    @Override
+    public List<Sort> findSortList(Sort sort) throws Exception {
+        return sortmapper.findSortList(sort);
+    }
 
-	@Override
-	public Sort findSortById(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return sortmapper.selectByPrimaryKey(id);
-	}
+    @Override
+    public Sort findSortById(Integer id) throws Exception {
+        return sortmapper.selectByPrimaryKey(id);
+    }
 
-	@Override
-	public void edit_do(Sort sort) throws Exception {
-		// TODO Auto-generated method stub
-		sortmapper.updateByPrimaryKeySelective(sort);
-	}
+    @Override
+    public void edit_do(Sort sort) throws Exception {
+        sortmapper.updateByPrimaryKeySelective(sort);
+    }
 
-	@Override
-	public void delete_do(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		sortmapper.deleteByPrimaryKey(id);
-	}
+    @Override
+    public void delete_do(Integer id) throws Exception {
+        sortmapper.deleteByPrimaryKey(id);
+    }
 
-	@Override
-	public void add_do(Sort sort) throws Exception {
-		// TODO Auto-generated method stub
-		sortmapper.insertSelective(sort);
-	}
+    @Override
+    public void add_do(Sort sort) throws Exception {
+        sortmapper.insertSelective(sort);
+    }
 
-	@Override
-	public void ban_do(Integer id) throws Exception {
-		Sort sort = new Sort();
-		sort.setId(id);
-		sort.setIsdelete(1);
-		sortmapper.banById(sort);
-	}
+    @Override
+    public void ban_do(Integer id) throws Exception {
+        Sort sort = new Sort();
+        sort.setId(id);
+        sort.setIsdelete(1);
+        sortmapper.banById(sort);
+    }
 
-	@Override
-	public void ok_do(Integer id) throws Exception {
-		Sort sort = new Sort();
-		sort.setId(id);
-		sort.setIsdelete(0);
-		sortmapper.okById(sort);
-	}
+    @Override
+    public void ok_do(Integer id) throws Exception {
+        Sort sort = new Sort();
+        sort.setId(id);
+        sort.setIsdelete(0);
+        sortmapper.okById(sort);
+    }
 }
