@@ -213,7 +213,9 @@
 	</update>
 	<select id="findNewsList" parameterType="com.yulu.mangger.bean.News"
 		resultType="com.yulu.mangger.bean.News">
-		select * from news where isdelete=0
+		select id, title,sort,fromto, fromuser,time,isdelete,digest
+		from news
+		where isdelete=0
 		<if test="title!=null">
 			and title like '%${title}%'
 		</if>

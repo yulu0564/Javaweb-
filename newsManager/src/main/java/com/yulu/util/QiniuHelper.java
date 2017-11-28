@@ -6,6 +6,7 @@ import java.util.UUID;
 import com.qiniu.common.QiniuException;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
+import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
@@ -18,7 +19,7 @@ public class QiniuHelper {
     /**
      * 空间名
      */
-    private static String Scope = "yulu";
+    private static String bucket = "yulu";
 
     /**
      * 域名
@@ -51,11 +52,26 @@ public class QiniuHelper {
             Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
 
             //上传文件
-            Response res = uploadManager.put(file, key, auth.uploadToken(Scope, key));
+            Response res = uploadManager.put(file, key, auth.uploadToken(bucket, key));
         } catch (Exception e) {
             return "";
         }
         return key;
+    }
+
+    //删除文件
+    public void deleteFile(String key) {
+        //构造一个带指定Zone对象的配置类
+        Configuration cfg = new Configuration(Zone.zone0());
+        Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
+        BucketManager bucketManager = new BucketManager(auth, cfg);
+        try {
+            bucketManager.delete(bucket, key);
+        } catch (QiniuException ex) {
+            //如果遇到异常，说明删除失败
+            System.err.println(ex.code());
+            System.err.println(ex.response.toString());
+        }
     }
 
     /**
@@ -64,4 +80,5 @@ public class QiniuHelper {
     public static String GetUrl(String key) {
         return String.format("http://%s/%s", Url, key);
     }
+
 }

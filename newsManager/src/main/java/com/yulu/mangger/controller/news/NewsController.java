@@ -41,11 +41,11 @@ public class NewsController {
     private CollectsService collectsService;
 
     /**
-     * 新闻列表
+     * 首页
      */
     @RequestMapping("index")
-    public ModelAndView index(HttpServletRequest request, Integer type, String serach, @RequestParam(required = false, defaultValue = "1") int page,
-                                  @RequestParam(required = false, defaultValue = "10") int rows)
+    public ModelAndView index(HttpServletRequest request, Integer type, @RequestParam(required = false, defaultValue = "1") int page,
+                              @RequestParam(required = false, defaultValue = "10") int rows)
             throws Exception {
         // 创建返回的对象modeAndView
         ModelAndView modelAndView = new ModelAndView();
@@ -61,7 +61,7 @@ public class NewsController {
         modelAndView.addObject("sortlist", sortlist);
         modelAndView.addObject("newslist", newslist);
         // 返回到jsp显示
-        modelAndView.setViewName("news/news_list");
+        modelAndView.setViewName("news/news_list1");
         return modelAndView;
     }
 
@@ -69,7 +69,7 @@ public class NewsController {
      * 新闻列表
      */
     @RequestMapping("list/{type}")
-    public ModelAndView news_list(HttpServletRequest request, Integer type, String serach, @RequestParam(required = false, defaultValue = "1") int page,
+    public ModelAndView news_list(HttpServletRequest request, Integer type, @RequestParam(required = false, defaultValue = "1") int page,
                                   @RequestParam(required = false, defaultValue = "10") int rows)
             throws Exception {
         // 创建返回的对象modeAndView
@@ -102,7 +102,7 @@ public class NewsController {
         if (sort != null) {
             news.setSort(DataUtils.parseInt(sort));
         }
-        List<News> newslist = newsService.findNewsList(news,page,rows);
+        List<News> newslist = newsService.findNewsList(news, page, rows);
         List<Sort> sortlist = sortService.findSortList(null);
         modelAndView.addObject("sortlist", sortlist);
         modelAndView.addObject("newslist", newslist);

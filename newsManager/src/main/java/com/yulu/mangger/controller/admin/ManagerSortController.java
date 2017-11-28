@@ -1,4 +1,4 @@
-package com.yulu.mangger.controller;
+package com.yulu.mangger.controller.admin;
 
 import com.yulu.mangger.bean.Sort;
 import com.yulu.mangger.service.SortService;

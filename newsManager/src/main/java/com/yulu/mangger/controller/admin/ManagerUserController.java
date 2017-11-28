@@ -1,4 +1,4 @@
-package com.yulu.mangger.controller;
+package com.yulu.mangger.controller.admin;
 
 import java.util.Date;
 import java.util.List;
