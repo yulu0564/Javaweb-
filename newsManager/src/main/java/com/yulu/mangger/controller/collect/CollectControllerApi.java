@@ -1,22 +1,22 @@
-package com.yulu.mangger.controller;
+package com.yulu.mangger.controller.collect;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yulu.mangger.ErrorCode;
-import com.yulu.mangger.bean.*;
+import com.yulu.mangger.bean.Collects;
+import com.yulu.mangger.bean.ResultBean;
 import com.yulu.mangger.service.CollectsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
 // 定义该Controller的根访问路径 /collect
-@RequestMapping("/collect")
-public class CollectController {
+@RequestMapping("/collect/api")
+public class CollectControllerApi {
 
 	@Autowired
 	@Qualifier("collectsService")
@@ -39,7 +39,7 @@ public class CollectController {
 				mResultBean.setCode(ErrorCode.COLLECT_SAVE_ALREADY);
 				mResultBean.setData(collectsOld);
 			} else {
-				mResultBean.setMsg("保存成功");
+				mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.SUCCESS));
 				mResultBean.setCode(ErrorCode.SUCCESS);
 				Collects collects = new Collects();
 				collects.setUserid(userid);
@@ -58,18 +58,17 @@ public class CollectController {
 	@RequestMapping("/isCollect")
 	public void isCollect(Integer newsid, Integer userid,
 						  HttpServletResponse response) throws Exception {
-		ResultBean<Collects> mResultBean = new ResultBean<Collects>();
+		ResultBean<Boolean> mResultBean = new ResultBean<>();
 		Collects mCollects = new Collects();
 		mCollects.setNewsid(newsid);
 		mCollects.setUserid(userid);
 		Collects collectsOld = collectsService.findCollects(mCollects);
+		mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.SUCCESS));
+		mResultBean.setCode(ErrorCode.SUCCESS);
 		if (collectsOld != null) {
-			mResultBean.setMsg("已经保存");
-			mResultBean.setCode(0);
-			mResultBean.setData(collectsOld);
+			mResultBean.setData(true);
 		}else {
-			mResultBean.setMsg("未成功");
-			mResultBean.setCode(1);
+			mResultBean.setData(false);
 		}
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().println(JSONObject.toJSONString(mResultBean));
@@ -90,7 +89,7 @@ public class CollectController {
 			Collects collectsOld = collectsService.findCollects(mCollects);
 			if (collectsOld != null) {
 				collectsService.delete_do(id);
-				mResultBean.setMsg("取消收藏成功");
+				mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.SUCCESS));
 				mResultBean.setCode(ErrorCode.SUCCESS);
 			}else{
 				mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.COLLECT_NOT_COLLECT));

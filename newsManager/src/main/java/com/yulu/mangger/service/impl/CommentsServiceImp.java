@@ -11,38 +11,33 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT)
 @Service("commentsService")
 public class CommentsServiceImp implements CommentsService {
-	// 注入Mapper
-	@Resource
-	private CommentsMapper commentsMapper;
+    @Resource
+    private CommentsMapper commentsMapper;
 
-	@Override
-	public List<Comments> findCommentsList(Comments comments,int pageNum, int rows) throws Exception {
-		// TODO Auto-generated method stub
-		PageHelper.startPage(pageNum, rows);
-		return commentsMapper.findCommentsList(comments);
-	}
+    @Override
+    public List<Comments> findCommentsList(Comments comments, int pageNum, int rows) throws Exception {
+        PageHelper.startPage(pageNum, rows);
+        return commentsMapper.findCommentsList(comments);
+    }
 
-	@Override
-	public Comments findCommentsId(int id) throws Exception {
-		return commentsMapper.findCommentsId(id);
-	}
+    @Override
+    public Comments findCommentsId(int id) throws Exception {
+        return commentsMapper.findCommentsId(id);
+    }
 
 
-	@Override
-	public void delete_do(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		commentsMapper.deleteByPrimaryKey(id);
-	}
+    @Override
+    public void delete_do(Integer id) throws Exception {
+        commentsMapper.deleteByPrimaryKey(id);
+    }
 
-	@Override
-	public int add_do(Comments comments) throws Exception {
-		// TODO Auto-generated method stub
-		return  commentsMapper.insertSelective(comments);
-	}
-
-	
+    @Override
+    public int add_do(Comments comments) throws Exception {
+        return commentsMapper.insertSelective(comments);
+    }
 
 }

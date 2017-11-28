@@ -20,14 +20,5 @@ public interface NewsMapper {
 
 	List<News> findNewsList(News news);
 
-	List<News> findhotNewsList(News news);
-
-	List<News> findhot7NewsList(News news);
-
-	List<News> findhot30NewsList(News news);
-
-	List<News> findSort2NewsList(News news);
-
-	List<News> findSort7NewsList(News news);
-
+	List<News> findNewsSerachList(News news);
 }
