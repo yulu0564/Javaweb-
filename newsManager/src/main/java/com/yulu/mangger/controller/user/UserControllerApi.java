@@ -1,4 +1,4 @@
-package com.yulu.mangger.controller;
+package com.yulu.mangger.controller.user;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yulu.mangger.ErrorCode;
@@ -6,7 +6,9 @@ import com.yulu.mangger.bean.Collects;
 import com.yulu.mangger.bean.Comments;
 import com.yulu.mangger.bean.ResultBean;
 import com.yulu.mangger.bean.User;
-import com.yulu.mangger.service.*;
+import com.yulu.mangger.service.CollectsService;
+import com.yulu.mangger.service.CommentsService;
+import com.yulu.mangger.service.UserService;
 import com.yulu.util.DataUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,14 +20,13 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import java.util.Date;
 import java.util.List;
 
 @Controller
 // 定义该Controller的根访问路径 /admin
 @RequestMapping("/user")
-public class UserController {
+public class UserControllerApi {
     // 注入UserService.
     @Autowired
     @Qualifier("userService")
@@ -40,26 +41,6 @@ public class UserController {
     private CollectsService collectsService;
 
     // 登录
-    @RequestMapping("/userLoginAndView")
-    public String userLogin(HttpServletRequest request, HttpSession session,
-                            String username, String password) throws Exception {
-        User r = userService.findLoginUser(username, password);
-        if (r != null) {
-            if (r.getIdent() == 0) {
-                session.setAttribute("username", r.getUsername());
-                session.setAttribute("nickname", r.getNickname());
-                session.setAttribute("userid", r.getId());
-                return "redirect:/news/news_index";
-            } else {
-                return "redirect:/user/userError";
-            }
-        } else {
-            return "redirect:/user/userError";
-        }
-
-    }
-
-    // 登录
     @RequestMapping("/userLogin")
     public void userLogin(HttpSession session,
                           String username, String password,
@@ -70,13 +51,13 @@ public class UserController {
             mResultBean.setCode(ErrorCode.LOGIN_NULL_USERNAME);
             mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_NULL_USERNAME));
             response.getWriter().println(JSONObject.toJSONString(mResultBean));
-            return ;
+            return;
         }
         if (DataUtils.isNull(password) || password.length() < 6) {
             mResultBean.setCode(ErrorCode.LOGIN_FORMAT_PASSWORD);
             mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_FORMAT_PASSWORD));
             response.getWriter().println(JSONObject.toJSONString(mResultBean));
-            return ;
+            return;
         }
         User r = userService.findLoginUser(username, password);
         if (r != null) {
@@ -92,29 +73,14 @@ public class UserController {
                 mResultBean.setCode(ErrorCode.LOGIN_USERNAME_OR_PASSWORD_ERROR);
                 mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_USERNAME_OR_PASSWORD_ERROR));
                 response.getWriter().println(JSONObject.toJSONString(mResultBean));
-                return ;
+                return;
             }
         } else {
             mResultBean.setCode(ErrorCode.LOGIN_USERNAME_OR_PASSWORD_ERROR);
             mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.LOGIN_USERNAME_OR_PASSWORD_ERROR));
             response.getWriter().println(JSONObject.toJSONString(mResultBean));
-            return ;
+            return;
         }
-    }
-
-    // 登录失败页面
-    @RequestMapping("/userError")
-    public ModelAndView userError() throws Exception {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user/error");
-        return modelAndView;
-    }
-
-    // 退出登录
-    @RequestMapping("/userSignout")
-    public String userSignout(HttpSession session) throws Exception {
-        session.invalidate();
-        return "forward:news/news_list";
     }
 
     // 注册
@@ -131,7 +97,7 @@ public class UserController {
             response.getWriter().println(JSONObject.toJSONString(mResultBean));
             return;
         }
-        if(!getFormat(mResultBean,nickname,password,email,telephone,response)){
+        if (!getFormat(mResultBean, nickname, password, email, telephone, response)) {
             return;
         }
         User user = new User();
@@ -185,40 +151,6 @@ public class UserController {
         response.getWriter().println(JSONObject.toJSONString(mResultBean));
     }
 
-    // 注册成功页面
-    @RequestMapping("/success")
-    public ModelAndView success() throws Exception {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user/success");
-        return modelAndView;
-    }
-
-    // 个人中心
-    @RequestMapping("/user_inf")
-    public ModelAndView user_inf(HttpSession session,HttpServletRequest request) throws Exception {
-        ModelAndView modelAndView = new ModelAndView();
-        Integer id = (Integer) session.getAttribute("userid");
-        User userinf = userService.findUserById(id);
-        modelAndView.addObject("userinf", userinf);
-        modelAndView.setViewName("user/user_inf");
-        return modelAndView;
-    }
-
-    // 修改用户页面
-    @RequestMapping("/user_inf_edit")
-    public ModelAndView user_inf_edit(HttpSession session,HttpServletRequest request) throws Exception {
-        // 创建返回的对象modeAndView
-        ModelAndView modelAndView = new ModelAndView();
-        Integer id = (Integer) session.getAttribute("userid");
-        // 将参数传入Service层进行处理
-        User userinf = userService.findUserById(id);
-        // 将处理的结果封装到ModelAndViews
-        modelAndView.addObject("userinf", userinf);
-        // 返回到jsp显示
-        modelAndView.setViewName("user/user_inf_edit");
-        return modelAndView;
-    }
-
     // 修改
     @RequestMapping("/user_inf_edit_do")
     public void user_inf_edit_do(HttpSession session,
@@ -228,9 +160,9 @@ public class UserController {
         User userinf = userService.findUserById(id);
         ResultBean<User> mResultBean = new ResultBean<User>();
         response.setContentType("application/json; charset=utf-8");
-       if(!getFormat(mResultBean,nickname,password,email,telephone,response)){
-           return;
-       }
+        if (!getFormat(mResultBean, nickname, password, email, telephone, response)) {
+            return;
+        }
         User user = new User();
         user.setTelephone(telephone);
         User r;
@@ -268,39 +200,6 @@ public class UserController {
         mResultBean.setMsg(ErrorCode.getMsg(ErrorCode.SUCCESS));
         mResultBean.setData(user);
         response.getWriter().println(JSONObject.toJSONString(mResultBean));
-    }
-
-    // 我的收藏
-    @RequestMapping("/user_collect")
-    public ModelAndView user_collect(HttpSession session,HttpServletRequest request)
-            throws Exception {
-        Integer userid = (Integer) session.getAttribute("userid");
-        ModelAndView modelAndView = new ModelAndView();
-        Collects collects = new Collects();
-        collects.setUserid(userid);
-        List<Collects> collectslist = collectsService
-                .findCollectsList(collects);
-
-        modelAndView.addObject("collectslist", collectslist);
-        modelAndView.setViewName("user/user_collect");
-        return modelAndView;
-    }
-
-    // 我的评论
-    @RequestMapping("/user_comment")
-    public ModelAndView user_comment(HttpSession session,@RequestParam(required = false, defaultValue = "1") int page,
-                                     @RequestParam(required = false, defaultValue = "10" ) int rows)
-            throws Exception {
-        Integer userid = (Integer) session.getAttribute("userid");
-        ModelAndView modelAndView = new ModelAndView();
-        Comments comments = new Comments();
-        comments.setUserid(userid);
-        List<Comments> commentslist = commentsService
-                .findCommentsList(comments,page,rows);
-
-        modelAndView.addObject("commentslist", commentslist);
-        modelAndView.setViewName("user/user_comment");
-        return modelAndView;
     }
 
     private boolean getFormat(ResultBean mResultBean, String nickname, String password, String email,
