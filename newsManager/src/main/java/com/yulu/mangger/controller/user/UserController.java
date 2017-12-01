@@ -1,13 +1,9 @@
 package com.yulu.mangger.controller.user;
 
-import com.alibaba.fastjson.JSONObject;
-import com.yulu.mangger.ErrorCode;
 import com.yulu.mangger.bean.Collects;
 import com.yulu.mangger.bean.Comments;
-import com.yulu.mangger.bean.ResultBean;
 import com.yulu.mangger.bean.User;
 import com.yulu.mangger.service.*;
-import com.yulu.util.DataUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -16,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -84,7 +78,7 @@ public class UserController {
 
     // 个人中心
     @RequestMapping("/user_inf")
-    public ModelAndView user_inf(HttpSession session,HttpServletRequest request) throws Exception {
+    public ModelAndView user_inf(HttpSession session, HttpServletRequest request) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         Integer id = (Integer) session.getAttribute("userid");
         User userinf = userService.findUserById(id);
@@ -95,7 +89,7 @@ public class UserController {
 
     // 修改用户页面
     @RequestMapping("/user_inf_edit")
-    public ModelAndView user_inf_edit(HttpSession session,HttpServletRequest request) throws Exception {
+    public ModelAndView user_inf_edit(HttpSession session, HttpServletRequest request) throws Exception {
         // 创建返回的对象modeAndView
         ModelAndView modelAndView = new ModelAndView();
         Integer id = (Integer) session.getAttribute("userid");
@@ -110,7 +104,7 @@ public class UserController {
 
     // 我的收藏
     @RequestMapping("/user_collect")
-    public ModelAndView user_collect(HttpSession session,HttpServletRequest request)
+    public ModelAndView user_collect(HttpSession session, HttpServletRequest request)
             throws Exception {
         Integer userid = (Integer) session.getAttribute("userid");
         ModelAndView modelAndView = new ModelAndView();
@@ -126,15 +120,15 @@ public class UserController {
 
     // 我的评论
     @RequestMapping("/user_comment")
-    public ModelAndView user_comment(HttpSession session,@RequestParam(required = false, defaultValue = "1") int page,
-                                     @RequestParam(required = false, defaultValue = "10" ) int rows)
+    public ModelAndView user_comment(HttpSession session, @RequestParam(required = false, defaultValue = "1") int page,
+                                     @RequestParam(required = false, defaultValue = "10") int rows)
             throws Exception {
         Integer userid = (Integer) session.getAttribute("userid");
         ModelAndView modelAndView = new ModelAndView();
         Comments comments = new Comments();
         comments.setUserid(userid);
         List<Comments> commentslist = commentsService
-                .findCommentsList(comments,page,rows);
+                .findCommentsList(comments, page, rows);
 
         modelAndView.addObject("commentslist", commentslist);
         modelAndView.setViewName("user/user_comment");

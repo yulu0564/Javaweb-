@@ -2,8 +2,6 @@ package com.yulu.mangger.controller.user;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yulu.mangger.ErrorCode;
-import com.yulu.mangger.bean.Collects;
-import com.yulu.mangger.bean.Comments;
 import com.yulu.mangger.bean.ResultBean;
 import com.yulu.mangger.bean.User;
 import com.yulu.mangger.service.CollectsService;
@@ -14,14 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 // 定义该Controller的根访问路径 /admin
