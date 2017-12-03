@@ -1,7 +1,7 @@
 package com.yulu.mangger.controller.news;
 
 import com.alibaba.fastjson.JSONObject;
-import com.yulu.mangger.ErrorCode;
+import com.yulu.mangger.constants.ErrorCode;
 import com.yulu.mangger.bean.News;
 import com.yulu.mangger.bean.ResultBean;
 import com.yulu.mangger.service.NewsService;
