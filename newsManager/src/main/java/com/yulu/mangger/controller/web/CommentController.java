@@ -1,4 +1,4 @@
-package com.yulu.mangger.controller.comment;
+package com.yulu.mangger.controller.web;
 
 import com.github.pagehelper.PageInfo;
 import com.yulu.mangger.bean.*;
@@ -21,7 +21,7 @@ public class CommentController {
     @Qualifier("commentsService")
     private CommentsService commentsService;
 
-    @RequestMapping("/comments_list")
+    @RequestMapping("/list")
     public ModelAndView comments_list(String newsid, String userid, @RequestParam(required = false, defaultValue = "1") int page,
                                       @RequestParam(required = false, defaultValue = "10") int rows)
             throws Exception {

@@ -1,4 +1,4 @@
-package com.yulu.mangger.controller.user;
+package com.yulu.mangger.controller.api;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yulu.mangger.constants.ErrorCode;

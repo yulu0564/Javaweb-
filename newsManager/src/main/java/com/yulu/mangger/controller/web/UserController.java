@@ -1,4 +1,4 @@
-package com.yulu.mangger.controller.user;
+package com.yulu.mangger.controller.web;
 
 import com.yulu.mangger.bean.Collects;
 import com.yulu.mangger.bean.Comments;
@@ -16,9 +16,11 @@ import javax.servlet.http.HttpSession;
 
 import java.util.List;
 
+import com.yulu.mangger.constants.AddressConstants.UserURL;
+
 @Controller
 // 定义该Controller的根访问路径 /admin
-@RequestMapping("/user")
+@RequestMapping(UserURL.USER)
 public class UserController {
     // 注入UserService.
     @Autowired
@@ -34,7 +36,7 @@ public class UserController {
     private CollectsService collectsService;
 
     // 登录
-    @RequestMapping("/userLoginAndView")
+    @RequestMapping(UserURL.LOGIN)
     public String userLogin(HttpServletRequest request, HttpSession session,
                             String username, String password) throws Exception {
         User r = userService.findLoginUser(username, password);
@@ -53,31 +55,15 @@ public class UserController {
 
     }
 
-    // 登录失败页面
-    @RequestMapping("/userError")
-    public ModelAndView userError() throws Exception {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user/error");
-        return modelAndView;
-    }
-
     // 退出登录
-    @RequestMapping("/userSignout")
+    @RequestMapping(UserURL.SIGNOUT)
     public String userSignout(HttpSession session) throws Exception {
         session.invalidate();
         return "forward:news/news_list";
     }
 
-    // 注册成功页面
-    @RequestMapping("/success")
-    public ModelAndView success() throws Exception {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user/success");
-        return modelAndView;
-    }
-
     // 个人中心
-    @RequestMapping("/user_inf")
+    @RequestMapping(UserURL.USER_INF)
     public ModelAndView user_inf(HttpSession session, HttpServletRequest request) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         Integer id = (Integer) session.getAttribute("userid");
@@ -88,7 +74,7 @@ public class UserController {
     }
 
     // 修改用户页面
-    @RequestMapping("/user_inf_edit")
+    @RequestMapping(UserURL.USER_INF_EDIT)
     public ModelAndView user_inf_edit(HttpSession session, HttpServletRequest request) throws Exception {
         // 创建返回的对象modeAndView
         ModelAndView modelAndView = new ModelAndView();
@@ -103,7 +89,7 @@ public class UserController {
     }
 
     // 我的收藏
-    @RequestMapping("/user_collect")
+    @RequestMapping(UserURL.COLLECT)
     public ModelAndView user_collect(HttpSession session, HttpServletRequest request)
             throws Exception {
         Integer userid = (Integer) session.getAttribute("userid");
@@ -119,7 +105,7 @@ public class UserController {
     }
 
     // 我的评论
-    @RequestMapping("/user_comment")
+    @RequestMapping(UserURL.COMMENT)
     public ModelAndView user_comment(HttpSession session, @RequestParam(required = false, defaultValue = "1") int page,
                                      @RequestParam(required = false, defaultValue = "10") int rows)
             throws Exception {

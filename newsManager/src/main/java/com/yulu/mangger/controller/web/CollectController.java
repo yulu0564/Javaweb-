@@ -1,4 +1,4 @@
-package com.yulu.mangger.controller.collect;
+package com.yulu.mangger.controller.web;
 
 import com.yulu.mangger.service.CollectsService;
 import org.springframework.beans.factory.annotation.Autowired;

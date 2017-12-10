@@ -1,4 +1,4 @@
-package com.yulu.mangger.controller.news;
+package com.yulu.mangger.controller.web;
 
 import com.github.pagehelper.PageInfo;
 import com.yulu.util.DataUtils;
@@ -18,10 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-
+import com.yulu.mangger.constants.AddressConstants.NewsURL;
 @Controller
 // 定义该Controller的根访问路径 /news
-@RequestMapping("/news")
+@RequestMapping(NewsURL.NEWS)
 public class NewsController {
     // 注入UserService.
     @Autowired
@@ -41,35 +41,10 @@ public class NewsController {
     private CollectsService collectsService;
 
     /**
-     * 首页
-     */
-    @RequestMapping("index")
-    public ModelAndView index(HttpServletRequest request, Integer type, @RequestParam(required = false, defaultValue = "1") int page,
-                              @RequestParam(required = false, defaultValue = "10") int rows)
-            throws Exception {
-        // 创建返回的对象modeAndView
-        ModelAndView modelAndView = new ModelAndView();
-        // 将参数传入Service层进行处理
-        News news = new News();
-        if (type != null && type != 0) {
-            news.setSort(type);
-        }
-        List<News> newslist = newsService.findNewsList(news, page, rows);
-        List<Sort> sortlist = sortService.findSortList(null);
-        PageInfo<News> p = new PageInfo<>(newslist);
-        modelAndView.addObject("total", p.getTotal());
-        modelAndView.addObject("sortlist", sortlist);
-        modelAndView.addObject("newslist", newslist);
-        // 返回到jsp显示
-        modelAndView.setViewName("news/news_list1");
-        return modelAndView;
-    }
-
-    /**
      * 新闻列表
      */
-    @RequestMapping("list/{type}")
-    public ModelAndView news_list(HttpServletRequest request, Integer type, @RequestParam(required = false, defaultValue = "1") int page,
+    @RequestMapping(NewsURL.LIST+"{type}")
+    public ModelAndView newsList(HttpServletRequest request, Integer type, @RequestParam(required = false, defaultValue = "1") int page,
                                   @RequestParam(required = false, defaultValue = "10") int rows)
             throws Exception {
         // 创建返回的对象modeAndView
@@ -90,8 +65,8 @@ public class NewsController {
         return modelAndView;
     }
 
-    @RequestMapping("/search_list")
-    public ModelAndView newslist(HttpServletRequest request, String serach,
+    @RequestMapping(NewsURL.SEARCH_LIST)
+    public ModelAndView searchList(HttpServletRequest request, String serach,
                                  String sort, @RequestParam(required = false, defaultValue = "1") int page,
                                  @RequestParam(required = false, defaultValue = "10") int rows) throws Exception {
         // 创建返回的对象modeAndView
@@ -111,7 +86,7 @@ public class NewsController {
         return modelAndView;
     }
 
-    @RequestMapping("/news_inf/{detail}")
+    @RequestMapping(NewsURL.NEWS_INF+"/{detail}")
     public ModelAndView news_inf(HttpSession session, @PathVariable Integer detail)
             throws Exception {
         // 创建返回的对象modeAndView
@@ -142,7 +117,7 @@ public class NewsController {
         return modelAndView;
     }
 
-    @RequestMapping("/news_details/{detail}")
+    @RequestMapping(NewsURL.NEWS_DETAILS+"/{detail}")
     public ModelAndView news_details(@PathVariable Integer detail)
             throws Exception {
         // 创建返回的对象modeAndView
