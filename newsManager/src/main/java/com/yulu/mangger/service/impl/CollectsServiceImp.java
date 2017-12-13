@@ -1,10 +1,9 @@
 package com.yulu.mangger.service.impl;
 
 import com.yulu.mangger.bean.Collects;
-import com.yulu.mangger.bean.User;
+import com.yulu.mangger.constants.ServiceConstants;
 import com.yulu.mangger.dao.CollectsMapper;
 import com.yulu.mangger.service.CollectsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT)
-@Service("collectsService")
+@Service(ServiceConstants.COLLECTS_SERVICE)
 public class CollectsServiceImp implements CollectsService {
 	// 注入Mapper
 	@Resource

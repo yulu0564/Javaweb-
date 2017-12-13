@@ -2,7 +2,7 @@ package com.yulu.mangger.constants;
 
 public class AddressConstants {
     public static final String REDIRECT = "redirect";
-    public static final String FORWARD = "forward";
+    public static final String FORWARD = "forward:";
 
     public interface NewsURL {
         String NEWS = "/news";

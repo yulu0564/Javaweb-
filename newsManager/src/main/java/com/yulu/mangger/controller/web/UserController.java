@@ -3,6 +3,7 @@ package com.yulu.mangger.controller.web;
 import com.yulu.mangger.bean.Collects;
 import com.yulu.mangger.bean.Comments;
 import com.yulu.mangger.bean.User;
+import com.yulu.mangger.constants.ServiceConstants;
 import com.yulu.mangger.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,15 +25,15 @@ import com.yulu.mangger.constants.AddressConstants.UserURL;
 public class UserController {
     // 注入UserService.
     @Autowired
-    @Qualifier("userService")
+    @Qualifier(ServiceConstants.USER_SERVICE)
     private UserService userService;
 
     @Autowired
-    @Qualifier("commentsService")
+    @Qualifier(ServiceConstants.COMMENTS_SERVICE)
     private CommentsService commentsService;
 
     @Autowired
-    @Qualifier("collectsService")
+    @Qualifier(ServiceConstants.COLLECTS_SERVICE)
     private CollectsService collectsService;
 
     // 登录

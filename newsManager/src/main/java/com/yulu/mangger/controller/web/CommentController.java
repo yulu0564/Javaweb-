@@ -10,18 +10,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
+import com.yulu.mangger.constants.AddressConstants.CommentURL;
 import java.util.List;
 
 @Controller
 // 定义该Controller的根访问路径 /comment
-@RequestMapping("/comment")
+@RequestMapping(CommentURL.COMMENT)
 public class CommentController {
     @Autowired
     @Qualifier("commentsService")
     private CommentsService commentsService;
 
-    @RequestMapping("/list")
+    @RequestMapping(CommentURL.LIST)
     public ModelAndView comments_list(String newsid, String userid, @RequestParam(required = false, defaultValue = "1") int page,
                                       @RequestParam(required = false, defaultValue = "10") int rows)
             throws Exception {

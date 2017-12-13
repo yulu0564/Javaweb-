@@ -1,6 +1,7 @@
 package com.yulu.mangger.service.impl;
 
 import com.yulu.mangger.bean.Sort;
+import com.yulu.mangger.constants.ServiceConstants;
 import com.yulu.mangger.dao.SortMapper;
 import com.yulu.mangger.service.SortService;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT)
-@Service("sortService")
+@Service(ServiceConstants.SORT_SERVICE)
 public class SortServiceImp implements SortService {
     // 注入User
     @Resource

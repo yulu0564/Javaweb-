@@ -2,6 +2,7 @@ package com.yulu.mangger.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.yulu.mangger.bean.News;
+import com.yulu.mangger.constants.ServiceConstants;
 import com.yulu.mangger.dao.NewsMapper;
 import com.yulu.mangger.service.NewsService;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT)
-@Service("newsService")
+@Service(ServiceConstants.NEWS_SERVICE)
 public class NewsServiceImp implements NewsService {
     @Resource
     private NewsMapper newsMapper;

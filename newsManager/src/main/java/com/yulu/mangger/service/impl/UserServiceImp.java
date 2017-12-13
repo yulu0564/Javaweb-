@@ -1,6 +1,7 @@
 package com.yulu.mangger.service.impl;
 
 import com.yulu.mangger.bean.User;
+import com.yulu.mangger.constants.ServiceConstants;
 import com.yulu.mangger.dao.UserMapper;
 import com.yulu.mangger.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.List;
  * @Description: 服务层接口实现类
  */
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT)
-@Service("userService")
+@Service(ServiceConstants.USER_SERVICE)
 public class UserServiceImp implements UserService {
 
     // 注入User

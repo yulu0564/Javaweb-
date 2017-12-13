@@ -1,6 +1,7 @@
 package com.yulu.mangger.controller.web;
 
 import com.github.pagehelper.PageInfo;
+import com.yulu.mangger.constants.ServiceConstants;
 import com.yulu.util.DataUtils;
 import com.yulu.mangger.bean.*;
 import com.yulu.mangger.service.CollectsService;
@@ -23,28 +24,28 @@ import com.yulu.mangger.constants.AddressConstants.NewsURL;
 // 定义该Controller的根访问路径 /news
 @RequestMapping(NewsURL.NEWS)
 public class NewsController {
-    // 注入UserService.
+
     @Autowired
-    @Qualifier("newsService")
+    @Qualifier(ServiceConstants.NEWS_SERVICE)
     private NewsService newsService;
 
     @Autowired
-    @Qualifier("sortService")
+    @Qualifier(ServiceConstants.SORT_SERVICE)
     private SortService sortService;
 
     @Autowired
-    @Qualifier("commentsService")
+    @Qualifier(ServiceConstants.COMMENTS_SERVICE)
     private CommentsService commentsService;
 
     @Autowired
-    @Qualifier("collectsService")
+    @Qualifier(ServiceConstants.COLLECTS_SERVICE)
     private CollectsService collectsService;
 
     /**
      * 新闻列表
      */
     @RequestMapping(NewsURL.LIST+"{type}")
-    public ModelAndView newsList(HttpServletRequest request, Integer type, @RequestParam(required = false, defaultValue = "1") int page,
+    public ModelAndView newsList(Integer type, @RequestParam(required = false, defaultValue = "1") int page,
                                   @RequestParam(required = false, defaultValue = "10") int rows)
             throws Exception {
         // 创建返回的对象modeAndView

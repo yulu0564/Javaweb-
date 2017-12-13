@@ -2,6 +2,7 @@ package com.yulu.mangger.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.yulu.mangger.bean.Comments;
+import com.yulu.mangger.constants.ServiceConstants;
 import com.yulu.mangger.dao.CommentsMapper;
 import com.yulu.mangger.service.CommentsService;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT)
-@Service("commentsService")
+@Service(ServiceConstants.COMMENTS_SERVICE)
 public class CommentsServiceImp implements CommentsService {
     @Resource
     private CommentsMapper commentsMapper;

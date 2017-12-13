@@ -1,5 +1,6 @@
 package com.yulu.mangger.controller;
 
+import com.yulu.mangger.constants.AddressConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ public class FormController {
     @RequestMapping(value = "index")
     public String index() {
         // 动态跳转页面
-        return "forward:index";
+        return AddressConstants.FORWARD+AddressConstants.NewsURL.NEWS+AddressConstants.NewsURL.LIST;
     }
 
 }
