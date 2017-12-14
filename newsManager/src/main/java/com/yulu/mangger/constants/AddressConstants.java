@@ -4,6 +4,39 @@ public class AddressConstants {
     public static final String REDIRECT = "redirect";
     public static final String FORWARD = "forward:";
 
+
+    public enum EnumCollect {
+    }
+
+    public enum EnumComment {
+        LIST
+    }
+
+
+
+    public enum EnumNews {
+        LIST, SEARCH_LIST, NEWS_INF, NEWS_DETAILS
+    }
+
+    public static String gerNewsURL(EnumNews enums) {
+        StringBuffer url = new StringBuffer(NewsURL.NEWS);
+        switch (enums) {
+            case LIST:
+                url.append(NewsURL.LIST);
+                break;
+            case SEARCH_LIST:
+                url.append(NewsURL.SEARCH_LIST);
+                break;
+            case NEWS_INF:
+                url.append(NewsURL.NEWS_INF);
+                break;
+            case NEWS_DETAILS:
+                url.append(NewsURL.NEWS_DETAILS);
+                break;
+        }
+        return url.toString();
+    }
+
     public interface NewsURL {
         String NEWS = "/news";
         String LIST = "/list";
@@ -20,7 +53,36 @@ public class AddressConstants {
         String COMMENT = "/comment";
         String LIST = "/list";
     }
-
+    public enum EnumUser {
+        USER, LOGIN, SIGNOUT, USER_INF, USER_INF_EDIT, COLLECT, COMMENT
+    }
+    public static String gerUserURL(EnumUser enums) {
+        StringBuffer url = new StringBuffer(NewsURL.NEWS);
+        switch (enums) {
+            case USER:
+                url.append(NewsURL.LIST);
+                break;
+            case LOGIN:
+                url.append(NewsURL.SEARCH_LIST);
+                break;
+            case SIGNOUT:
+                url.append(NewsURL.NEWS_INF);
+                break;
+            case USER_INF:
+                url.append(NewsURL.NEWS_DETAILS);
+                break;
+            case USER_INF_EDIT:
+                url.append(NewsURL.NEWS_DETAILS);
+                break;
+            case COLLECT:
+                url.append(NewsURL.NEWS_DETAILS);
+                break;
+            case COMMENT:
+                url.append(NewsURL.NEWS_DETAILS);
+                break;
+        }
+        return url.toString();
+    }
     public interface UserURL {
         String USER = "/user";
         String LOGIN = "/login";// 登录

@@ -9,8 +9,8 @@ internal class DontCreateMe : MyInterface , AAA {
     override fun foo() {
         super<MyInterface>.foo()
         super<AAA>.foo()
-        val l = mutableListOf(1, 2, 3)
-        l.swap1(0, 2)
+        val ll = mutableListOf(1, 2, 3)
+        ll.swap1(0, 2)
     }
     fun MutableList<Int>.swap1(x: Int, y: Int) {
         val temp = this[x] // this 对应 list
